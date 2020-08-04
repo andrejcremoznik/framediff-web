@@ -1,0 +1,28 @@
+$nav_default_color: #ddd !default;
+$nav_active_color: #307bb4 !default;
+
+.nav { display: flex; }
+
+.nav__item {
+  position: relative;
+  flex: 0 0 auto;
+  margin: 0 0.5em;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  color: $nav_default_color !important;
+  &:focus { outline: 0; }
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0; bottom: 0; left: 0;
+    height: 2px;
+    background-color: $nav_default_color;
+    transform: scaleX(0);
+    transition: transform 200ms ease-out;
+  }
+  &.active::after { background-color: $nav_active_color; }
+  &:hover,
+  &.active {
+    &::after { transform: scaleX(1); }
+  }
+}

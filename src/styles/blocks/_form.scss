@@ -1,0 +1,102 @@
+$form_field_padding: 8px !default;
+$form_field_inner_height: 20px !default;
+$form_field_tx: #eee !default;
+$form_field_bg: #333 !default;
+$form_gutter: (mobile: 10px, tablet: 15px, desktop: 20px) !default;
+$form_field_border_radius: 5px !default;
+$form_response_positive: green !default;
+$form_response_negative: red !default;
+
+.form__row {
+  margin-bottom: map_get($form_gutter, mobile);
+  &:last-child { margin-bottom: 0; }
+  @include breakpoint(tablet) { margin-bottom: map_get($form_gutter, tablet); }
+  @include breakpoint(desktop) { margin-bottom: map_get($form_gutter, desktop); }
+}
+
+.form__response {
+  padding: 1em;
+  border: 1px solid;
+}
+.form__response--success { color: $form_response_positive; }
+.form__response--error { color: $form_response_negative; }
+
+.form__label,
+.form__toggle { display: block; }
+
+.form__label { margin: 0 0 0.25em; }
+
+.form__field {
+  // Resets
+  box-sizing: border-box;
+  margin: 0;
+  &:focus {
+    outline: 0;
+    box-shadow: none;
+  }
+  // Defaults
+  transition: all ease 150ms;
+  padding: $form_field_padding;
+  border: 0;
+  border-radius: $form_field_border_radius;
+  color: $form_field_tx;
+  background-color: $form_field_bg;
+  font-family: inherit;
+  font-size: 1em;
+  line-height: inherit;
+  font-weight: normal;
+  font-style: normal;
+  &:focus { box-shadow: 0 0 1px 1px rgba($form_field_tx, 0.5); }
+}
+
+.form__field--radio,
+.form__field--checkbox { padding: 0; }
+
+.form__field--text,
+.form__field--email,
+.form__field--number,
+.form__field--password,
+.form__field--search,
+.form__field--tel,
+.form__field--url,
+.form__field--select {
+  height: $form_field_inner_height + $form_field_padding * 2;
+  line-height: $form_field_inner_height;
+}
+
+.form__field--text,
+.form__field--email,
+.form__field--number,
+.form__field--password,
+.form__field--search,
+.form__field--tel,
+.form__field--url,
+.form__field--select,
+.form__field--textarea {
+  display: block;
+  width: 100%;
+}
+
+.form__field--textarea {
+  min-height: 120px;
+  resize: vertical;
+  overflow: auto;
+}
+
+.form__field--search {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+  &::-webkit-search-decoration { -webkit-appearance: none; }
+}
+
+.form__field--number {
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button { height: auto; }
+}
+
+.form__field--select { text-transform: none; }
+
+.form__field--file::-webkit-file-upload-button { -webkit-appearance: button; }
+
+.form__toggle--label-hidden > .form__field { display: block; }
+.form__toggle--label-visible > .form__field { margin-right: 0.5em; }

@@ -1,0 +1,98 @@
+$button_border_radius: 5px !default;
+$button_default_tx: #fff !default;
+$button_default_bg: #555 !default;
+$button_primary_tx: #fff !default;
+$button_primary_bg: #307bb4 !default;
+$button_shadow: 0 1px 4px rgba(#000, 0.25) !default;
+
+button.button,
+input.button { -webkit-appearance: button; }
+button.button::-moz-focus-inner,
+input.button::-moz-focus-inner {
+  padding: 0;
+  border-style: none;
+}
+
+.button {
+  /* BEGIN: Resets */
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 0;
+  line-height: 1;
+  vertical-align: middle;
+  text-decoration: none;
+  text-transform: none;
+  text-shadow: none;
+  white-space: nowrap;
+  cursor: pointer;
+  // &:focus { outline: 0; }
+  /* END: Resets */
+
+  // Default visuals
+  transition: all 150ms ease;
+  padding: 0.75em 1.5em;
+  border: 0;
+  border-radius: $button_border_radius;
+  box-shadow: $button_shadow;
+  font-family: inherit;
+  font-size: 1em;
+  font-weight: bold;
+  font-style: normal;
+  color: $button_default_tx;
+  background-color: $button_default_bg;
+  background-image: linear-gradient(to bottom, rgba(#000, 0), rgba(#000, 0.2));
+  text-shadow: 0 1px 1px darken($button_default_bg, 20%);
+  &:hover {
+    color: $button_default_tx;
+    background-color: darken($button_default_bg, 10%);
+  }
+}
+
+.button[disabled],
+.button--disabled {
+  pointer-events: none;
+  opacity: .5;
+}
+
+// Sizes
+.button--l { font-size: 1.25em; }
+
+.button--s { font-size: .75em; }
+
+.button--block {
+  display: block;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: center;
+}
+button.button--block,
+input.button--block { width: 100%; }
+
+// Colors
+.button--primary {
+  color: $button_primary_tx;
+  background-color: $button_primary_bg;
+  text-shadow: 0 1px 1px darken($button_primary_bg, 20%);
+  &:hover {
+    color: $button_primary_tx;
+    background-color: darken($button_primary_bg, 10%);
+  }
+}
+
+// Mods
+.button--plain {
+  padding: 0;
+  box-shadow: none;
+  line-height: inherit;
+  font-weight: inherit;
+  text-shadow: none;
+  color: inherit;
+  background-color: transparent !important;
+  background-image: none;
+  -webkit-appearance: none;
+  &:focus { box-shadow: none; }
+  &.button--primary {
+    color: $button_primary_bg;
+    &:hover { color: darken($button_primary_bg, 10%); }
+  }
+}

@@ -1,0 +1,9 @@
+$logo_size: 2rem !default;
+
+.logo { margin: 0; }
+
+.logo__image {
+  display: block;
+  width: $logo_size;
+  height: $logo_size;
+}

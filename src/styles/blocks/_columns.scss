@@ -1,0 +1,68 @@
+$columns_gaps: (mobile: 10px, tablet: 15px, desktop: 20px) !default;
+
+// Columns = flex row
+.columns { display: flex; }
+
+// Gaps between items
+.columns--gaps {
+  margin-left: -#{map_get($columns_gaps, mobile)};
+  margin-right: -#{map_get($columns_gaps, mobile)};
+  > .column {
+    padding-left: map_get($columns_gaps, mobile);
+    padding-right: map_get($columns_gaps, mobile);
+  }
+}
+@include breakpoint(tablet) {
+  .columns--gaps {
+    margin-left: -#{map_get($columns_gaps, tablet)};
+    margin-right: -#{map_get($columns_gaps, tablet)};
+    > .column {
+      padding-left: map_get($columns_gaps, tablet);
+      padding-right: map_get($columns_gaps, tablet);
+    }
+  }
+}
+@include breakpoint(desktop) {
+  .columns--gaps {
+    margin-left: -#{map_get($columns_gaps, desktop)};
+    margin-right: -#{map_get($columns_gaps, desktop)};
+    > .column {
+      padding-left: map_get($columns_gaps, desktop);
+      padding-right: map_get($columns_gaps, desktop);
+    }
+  }
+}
+
+// Horizontal flow
+.columns--wrap { flex-wrap: wrap; } // items will wrap instead of overflowing rows
+
+.columns--reverse { flex-direction: row-reverse; } // items rendered in reverse order
+
+.columns--autosize, // items fit content size
+.columns--apart,    // items with space between
+.columns--spread {  // items with space around
+  > .column { flex: 0 0 auto; }
+}
+.columns--apart { justify-content: space-between; }
+.columns--spread { justify-content: space-around; }
+.columns--center { justify-content: center; }
+
+// Vertical flow
+.columns--top { align-items: flex-start; }  // align items top edge
+.columns--bottom { align-items: flex-end; } // align items bottom edge
+.columns--middle { align-items: center; }   // align items to middle
+
+// Individual items
+.column {
+  flex: 1 1 0;
+  min-width: 0;
+  &.double { flex-grow: 2; }
+  &.triple { flex-grow: 3; }
+  &.quadra { flex-grow: 4; }
+  &.penta { flex-grow: 5; }
+}
+
+.column--autosize {
+  flex-grow: 0;
+  flex-basis: auto;
+}

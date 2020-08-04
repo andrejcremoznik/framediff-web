@@ -1,0 +1,36 @@
+$dropdown_tx: #ddd !default;
+$dropdown_bg: #111 !default;
+$dropdown_padding: (mobile: 10px, tablet: 15px, desktop: 20px) !default;
+$dropdown_border_radius: 5px !default;
+$dropdown_shadow: 0 5px 10px -5px rgba(#fff, 0.2) !default;
+
+.dropdown { position: relative; }
+
+.dropdown__content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  z-index: 2;
+  padding: map_get($dropdown_padding, mobile);
+  border-radius: $dropdown_border_radius;
+  color: $dropdown_tx;
+  background-color: $dropdown_bg;
+  box-shadow: 0 5px 10px -5px rgba(#fff, 0.2);
+  @include breakpoint(tablet) { padding: map_get($dropdown_padding, tablet); }
+  @include breakpoint(desktop) { padding: map_get($dropdown_padding, desktop); }
+  .dropdown--pin-right > & { right: 0; }
+  .dropdown--pin-left > & { left: 0; }
+}
+
+.dropdown__backdrop {
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: 1;
+  background: transparent;
+}
+
+.dropdown__content,
+.dropdown__backdrop {
+  display: none;
+  [data-state="open"] > & { display: block; }
+}

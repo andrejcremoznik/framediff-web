@@ -1,0 +1,16 @@
+$box_tx: #ddd !default;
+$box_bg: #222 !default;
+$box_padding: (mobile: 10px, tablet: 15px, desktop: 20px) !default;
+$box_border_radius: 5px !default;
+
+.box {
+  padding: map_get($box_padding, mobile);
+  border: 1px solid lighten($box_bg, 20%);
+  border-radius: $box_border_radius;
+  color: $box_tx;
+  background-color: $box_bg;
+  background-image: linear-gradient(to bottom, lighten($box_bg, 5%), $box_bg);
+  box-shadow: 0 5px 20px rgba(#000, 0.25);
+  @include breakpoint(tablet) { padding: map_get($box_padding, tablet); }
+  @include breakpoint(desktop) { padding: map_get($box_padding, desktop); }
+}
