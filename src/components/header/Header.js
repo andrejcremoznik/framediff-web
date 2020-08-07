@@ -8,7 +8,7 @@ export default function Header ({ className = '', children }) {
         <div className='logo__image'>Logo</div>
       </h1>
       <nav className='nav column'>
-        <NavLink className='nav__item' to='/' exact>Home</NavLink>
+        <NavLink className='nav__item' to='/' exact>Compare</NavLink>
         <NavLink className='nav__item' to='/objects'>Manage objects</NavLink>
       </nav>
     </header>

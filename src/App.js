@@ -3,6 +3,7 @@ import { useImmerReducer } from 'use-immer'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 // import client from './app/feathers'
 import { StateContext, DispatchContext, initialState, reducer } from './app/context'
+import { objects as objectsLocalStorage } from './app/storage'
 import Home from './pages/home/Home'
 import Objects from './pages/objects/Objects'
 import NotFound from './pages/notfound/NotFound'
@@ -14,13 +15,8 @@ export default function App () {
 
   useEffect(() => {
     async function bootstrap () {
-      // Authenticate user
-      // try {
-      //   const user = await client.reAuthenticate()
-      //   dispatch({ type: 'login', payload: user.user })
-      // } catch (err) {
-      //   console.error(err.message)
-      // }
+      // Set custom objects from localStorage
+      dispatch({ type: 'setLocalObjects', payload: objectsLocalStorage.get() })
       // Ready
       dispatch({ type: 'setReady' })
     }

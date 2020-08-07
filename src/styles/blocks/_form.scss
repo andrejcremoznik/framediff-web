@@ -100,3 +100,42 @@ $form_response_negative: red !default;
 
 .form__toggle--label-hidden > .form__field { display: block; }
 .form__toggle--label-visible > .form__field { margin-right: 0.5em; }
+
+// Autocomplete
+.form__autocomplete {
+  &[data-state="active"] {
+    position: relative;
+    z-index: 1;
+    > .form__field--autocomplete {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    > .form__autocomplete-backdrop,
+    > .form__autocomplete-results { display: block; }
+  }
+}
+
+.form__autocomplete-backdrop {
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  display: none;
+}
+
+.form__autocomplete-results {
+  position: absolute;
+  top: 100%; right: 0; left: 0;
+  display: none;
+  max-height: 70vh;
+  margin-top: -2px;
+  border-radius: 0 0 $form_field_border_radius $form_field_border_radius;
+  overflow-x: hidden;
+  overflow-y: auto;
+  color: $form_field_tx;
+  background: $form_field_bg;
+  box-shadow: 0 5px 5px -5px rgba(#000, 0.5);
+}
+
+.form__autocomplete-result {
+  padding: $form_field_padding;
+  &[tabindex="0"] { background: #f0f; }
+}
