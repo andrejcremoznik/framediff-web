@@ -82,17 +82,27 @@ input.button--block { width: 100%; }
 // Mods
 .button--plain {
   padding: 0;
+  border-radius: 0;
   box-shadow: none;
   line-height: inherit;
   font-weight: inherit;
   text-shadow: none;
   color: inherit;
-  background-color: transparent !important;
+  background-color: transparent;
   background-image: none;
   -webkit-appearance: none;
   &:focus { box-shadow: none; }
   &.button--primary {
     color: $button_primary_bg;
-    &:hover { color: darken($button_primary_bg, 10%); }
+    background-color: transparent;
+    &:hover {
+      color: darken($button_primary_bg, 10%);
+      background-color: transparent;
+    }
   }
+}
+
+.button--x {
+  font-size: 1.5em;
+  line-height: 1;
 }

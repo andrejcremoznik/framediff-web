@@ -14,4 +14,13 @@ export function makeClassNameDecorator (classPrefix) {
       `${acc} ${classPrefix}--${cur}`, `${extraClass} ${classPrefix}`.trim())
 }
 
-export default { domId, sleep, makeClassNameDecorator }
+export function randomColor () {
+  return `hsla(${Math.floor(Math.random() * 360)}, 100%, ${Math.floor(Math.random() * 50) + 25}%, 1)`
+}
+
+export default {
+  domId,
+  sleep,
+  makeClassNameDecorator,
+  randomColor
+}

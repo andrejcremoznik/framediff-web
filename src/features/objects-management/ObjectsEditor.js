@@ -8,8 +8,8 @@ import { objects as objectsLocalStorage } from '../../app/storage'
 
 export default function ObjectsEditor () {
   const [title, setTitle] = useState('')
-  const [width, setWidth] = useState('0.1')
-  const [height, setHeight] = useState('0.1')
+  const [width, setWidth] = useState('0.0')
+  const [height, setHeight] = useState('0.0')
   const [error, setError] = useState('')
   const dispatch = useContext(DispatchContext)
   const { localObjects } = useContext(StateContext)
@@ -30,6 +30,10 @@ export default function ObjectsEditor () {
 
     if (Number.isNaN(numericWidth) || Number.isNaN(numericHeight)) {
       errors.push('Width and height must be numbers in millimeters.')
+    } else {
+      if (numericWidth <= 0 || numericHeight <= 0) {
+        errors.push('Width and height must be greater than 0.')
+      }
     }
     if (!isLongerThan(5)(trimmedTitle)) {
       errors.push('Title is too short.')
@@ -46,8 +50,8 @@ export default function ObjectsEditor () {
     })
     e.target.reset()
     setTitle('')
-    setWidth('0.1')
-    setHeight('0.1')
+    setWidth('0.0')
+    setHeight('0.0')
   }
 
   return (
@@ -89,10 +93,10 @@ export default function ObjectsEditor () {
             />
           </Form.Row>
         </div>
-        {error && <Form.Response type='error'>{error}</Form.Response>}
         <Form.Row>
           <Form.Button mods={['primary']}>Add object</Form.Button>
         </Form.Row>
+        {error && <Form.Response type='error'>{error}</Form.Response>}
       </Form.Wrapper>
       <hr />
       <div className='objects-editor__list'>

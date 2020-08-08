@@ -6,6 +6,7 @@ $form_gutter: (mobile: 10px, tablet: 15px, desktop: 20px) !default;
 $form_field_border_radius: 5px !default;
 $form_response_positive: green !default;
 $form_response_negative: red !default;
+$form_autocomplete_highlight: lighten($form_field_bg, 10%) !default;
 
 .form__row {
   margin-bottom: map_get($form_gutter, mobile);
@@ -137,5 +138,6 @@ $form_response_negative: red !default;
 
 .form__autocomplete-result {
   padding: $form_field_padding;
-  &[tabindex="0"] { background: #f0f; }
+  &:hover,
+  &[tabindex="0"] { background-color: $form_autocomplete_highlight; }
 }

@@ -18,6 +18,7 @@ export default function Autocomplete ({ id = domId(), label, hint, options, onSe
     const results = options.filter(option =>
       option.text.toLowerCase().indexOf(searchTermNormalized) > -1)
     setCandidates(results)
+    setFocusIndex(0)
   }, [searchTerm, options])
 
   const handleKeyboard = useCallback(e => {

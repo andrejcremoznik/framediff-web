@@ -1,11 +1,12 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { ReactComponent as Logo } from '../../assets/logo.svg'
 
 export default function Header ({ className = '', children }) {
   return (
     <header className={`header columns columns--middle columns--apart ${className}`.trim()}>
       <h1 className='logo column'>
-        <div className='logo__image'>Logo</div>
+        <Logo className='logo__image' />
       </h1>
       <nav className='nav column'>
         <NavLink className='nav__item' to='/' exact>Compare</NavLink>

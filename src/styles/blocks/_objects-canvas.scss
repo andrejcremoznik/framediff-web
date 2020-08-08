@@ -1,0 +1,10 @@
+$objects_canvas_frame_bg: #202020 !default;
+
+.objects-canvas { padding-bottom: 30%; }
+
+.objects-canvas__frame {
+  fill: $objects_canvas_frame_bg;
+  stroke-width: 1;
+}
+
+.objects-canvas__title { stroke: none; }
