@@ -55,15 +55,18 @@ $negative: #ff4040;
 
 $link: #307bb4;
 
+
 /*
- * Various visual features
- */
+* Various visual features
+*/
 $border_radius_s: 5px;
 $border_radius_m: 10px;
 
 // box-shadows:
 $glow: 0 5px 10px -5px rgba(#fff, 0.2);
 $shadow: 0 1px 4px rgba(#000, 0.25);
+
+$focus_glow: 0 0 0 2px #0095ff;
 
 /*
  * Components
@@ -77,6 +80,7 @@ $button_primary_tx: $tx_color_3h;
 $button_primary_bg: $brand;
 $button_border_radius: $border_radius_s;
 $button_shadow: $shadow;
+$button_focus_glow: $focus_glow;
 
 // Columns
 $columns_gaps: $gutter_s;
@@ -102,6 +106,7 @@ $form_response_positive: $positive;
 $form_response_negative: $negative;
 $form_gutter: $gutter_s;
 $form_field_border_radius: $border_radius_s;
+$form_field_focus_glow: $focus_glow;
 
 // Dropdown
 $dropdown_tx: $tx_color;

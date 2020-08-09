@@ -20,4 +20,14 @@ export function ExternalLinkButton ({ mods, className, children, ...props }) {
   return <a className={decorate(mods, className)} {...props}>{children}</a>
 }
 
-export default { Button, SubmitButton, InternalLinkButton, ExternalLinkButton }
+export function ButtonRow ({ className = '', children }) {
+  return <div className={`button-row ${className}`.trim()}>{children}</div>
+}
+
+export default {
+  Button,
+  SubmitButton,
+  InternalLinkButton,
+  ExternalLinkButton,
+  ButtonRow
+}

@@ -3,7 +3,7 @@ import React from 'react'
 export default function Footer ({ className = '' }) {
   return (
     <footer className={`footer ${className}`.trim()}>
-      <p>Icons by <a href='https://fontawesome.com/' target='_blank' rel='nofollow noopener noreferrer'>FontAwesome</a>.<br /><a href='https://github.com/andrejcremoznik' target='_blank' rel='nofollow noopener noreferrer'>Framediff</a> is open source software.</p>
+      <p>Unicons by <a href='https://iconscout.com/unicons/' target='_blank' rel='nofollow noopener noreferrer'>Iconscout</a>.<br /><b>Framediff</b> is open source software.</p>
     </footer>
   )
 }

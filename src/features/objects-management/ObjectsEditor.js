@@ -102,9 +102,9 @@ export default function ObjectsEditor () {
       <div className='objects-editor__list'>
         {localObjects.map(([width, height, title, key]) => (
           <div key={key} className='objects-editor__list-row columns columns--gaps'>
-            <div className='column'>{title}</div>
+            <div className='column double'>{title}</div>
             <div className='column'>{width} mm × {height} mm</div>
-            <div className='column'>
+            <div className='column column--autosize'>
               <Button mods={['s']} onClick={() => dispatch({ type: 'removeLocalObject', payload: key })}>Remove</Button>
             </div>
           </div>

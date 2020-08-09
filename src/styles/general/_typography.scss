@@ -10,6 +10,7 @@ $default_line_height: 1.5 !default;
 $tx_color: #ddd !default;
 $bg_color: #222 !default;
 $link: #307bb4 !default;
+$focus_glow: 0 0 1px 1px #0095ff !default;
 
 // Font sizes
 html { font-size: #{map_get($default_font_size, mobile)}px; }
@@ -48,6 +49,8 @@ body {
 
 img, svg { vertical-align: middle; }
 
+hr { border-color: darken($bg_color, 5%) transparent lighten($bg_color, 5%); }
+
 p, ul, ol, table, blockquote, figure {
   margin: 0 0 #{$default_line_height}em;
   &:last-child { margin-bottom: 0; }
@@ -64,6 +67,10 @@ blockquote {
 a { color: $link; }
 a:visited { color: darken($link, 10%); }
 a:hover { text-decoration: none; }
+a:focus {
+  outline: 0;
+  box-shadow: $focus_glow;
+}
 
 .h1, h1,
 .h2, h2,

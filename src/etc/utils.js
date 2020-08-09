@@ -15,7 +15,7 @@ export function makeClassNameDecorator (classPrefix) {
 }
 
 export function randomColor () {
-  return `hsla(${Math.floor(Math.random() * 360)}, 100%, ${Math.floor(Math.random() * 50) + 25}%, 1)`
+  return `hsl(${Math.floor(Math.random() * 360)}, 100%, ${Math.floor(Math.random() * 50) + 25}%)`
 }
 
 export default {

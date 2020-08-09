@@ -4,6 +4,7 @@ import { randomColor } from '../../etc/utils'
 import Autocomplete from '../../components/form/Autocomplete'
 import Form from '../../components/form/Form'
 import { Button } from '../../components/button/Button'
+import { ReactComponent as Times } from '../../assets/times.svg'
 
 export default function ObjectsPicker () {
   const { localObjects, objectsBeingCompared } = useContext(StateContext)
@@ -43,7 +44,7 @@ export default function ObjectsPicker () {
           <div key={object[3]} className='objects-picker__item'>
             <div className='objects-picker__item-legend' style={{ backgroundColor: object[4] }} onClick={randomizeColor(object[3])} />
             <div className='objects-picker__item-title'>{object[2]}</div>
-            <Button className='objects-picker__item-x' mods={['plain', 'x']} onClick={removeObjectFromComparison(object[3])}>×</Button>
+            <Button className='objects-picker__item-x' mods={['symbol', 'plain']} onClick={removeObjectFromComparison(object[3])} aria-label='Remove object'><Times /></Button>
           </div>
         ))}
       </Form.Row>

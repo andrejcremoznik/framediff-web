@@ -1,12 +1,13 @@
 $form_field_padding: 8px !default;
 $form_field_inner_height: 20px !default;
+$form_field_border_radius: 5px !default;
 $form_field_tx: #eee !default;
 $form_field_bg: #333 !default;
-$form_gutter: (mobile: 10px, tablet: 15px, desktop: 20px) !default;
-$form_field_border_radius: 5px !default;
 $form_response_positive: green !default;
 $form_response_negative: red !default;
+$form_gutter: (mobile: 10px, tablet: 15px, desktop: 20px) !default;
 $form_autocomplete_highlight: lighten($form_field_bg, 10%) !default;
+$form_field_focus_glow: 0 0 1px 1px #0095ff !default;
 
 .form__row {
   margin-bottom: map_get($form_gutter, mobile);
@@ -31,10 +32,7 @@ $form_autocomplete_highlight: lighten($form_field_bg, 10%) !default;
   // Resets
   box-sizing: border-box;
   margin: 0;
-  &:focus {
-    outline: 0;
-    box-shadow: none;
-  }
+  &:focus { outline: 0; }
   // Defaults
   transition: all ease 150ms;
   padding: $form_field_padding;
@@ -47,7 +45,7 @@ $form_autocomplete_highlight: lighten($form_field_bg, 10%) !default;
   line-height: inherit;
   font-weight: normal;
   font-style: normal;
-  &:focus { box-shadow: 0 0 1px 1px rgba($form_field_tx, 0.5); }
+  &:focus { box-shadow: $form_field_focus_glow; }
 }
 
 .form__field--radio,

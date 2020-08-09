@@ -35,6 +35,16 @@ img, svg {
 }
 svg { pointer-events: none; }
 
+hr {
+  display: block;
+  height: 0;
+  border-width: 1px 0;
+  border-style: solid;
+  margin: map_get($gutter_m, mobile) 0;
+  @include breakpoint(tablet) { margin: map_get($gutter_m, tablet) 0; }
+  @include breakpoint(desktop) { margin: map_get($gutter_m, desktop) 0; }
+}
+
 /*
  * Usable classes
  */

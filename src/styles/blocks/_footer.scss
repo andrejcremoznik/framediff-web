@@ -1,8 +1,8 @@
 $footer_to_content_gutter: (mobile: 20px, tablet: 30px, desktop: 40px) !default;
 
 .footer {
-  margin-top: map_get($footer_to_content_gutter, mobile);
-  opacity: 0.5;
+  margin: map_get($footer_to_content_gutter, mobile) 0;
+  opacity: 0.75;
   @include breakpoint(tablet) { margin-top: map_get($footer_to_content_gutter, tablet); }
   @include breakpoint(desktop) { margin-top: map_get($footer_to_content_gutter, desktop); }
 }

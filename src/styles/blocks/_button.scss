@@ -3,7 +3,9 @@ $button_default_tx: #fff !default;
 $button_default_bg: #555 !default;
 $button_primary_tx: #fff !default;
 $button_primary_bg: #307bb4 !default;
-$button_shadow: 0 1px 4px rgba(#000, 0.25) !default;
+$button_shadow_color: rgba(#000, 0.25) !default;
+$button_shadow: 0 1px 4px $button_shadow_color !default;
+$button_focus_glow: 0 0 0 2px #0095ff !default;
 
 button.button,
 input.button { -webkit-appearance: button; }
@@ -25,7 +27,10 @@ input.button::-moz-focus-inner {
   text-shadow: none;
   white-space: nowrap;
   cursor: pointer;
-  // &:focus { outline: 0; }
+  &:focus {
+    outline: 0;
+    box-shadow: $focus_glow;
+  }
   /* END: Resets */
 
   // Default visuals
@@ -91,7 +96,6 @@ input.button--block { width: 100%; }
   background-color: transparent;
   background-image: none;
   -webkit-appearance: none;
-  &:focus { box-shadow: none; }
   &.button--primary {
     color: $button_primary_bg;
     background-color: transparent;
@@ -102,7 +106,36 @@ input.button--block { width: 100%; }
   }
 }
 
-.button--x {
-  font-size: 1.5em;
-  line-height: 1;
+.button--symbol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5em; // 0.75em top and bot + 1em line
+  padding-top: 0;
+  padding-bottom: 0;
+  > svg {
+    height: 1.5em;
+    filter: drop-shadow(0 1px 1px darken($button_default_bg, 20%));
+    &.button-primary { filter: drop-shadow(0 1px 1px darken($button_primary_bg, 20%)); }
+  }
+}
+
+.button-row {
+  display: flex;
+  border-radius: $button_border_radius;
+  box-shadow: $button_shadow;
+  overflow: hidden;
+  > .button {
+    flex: 1 1 auto;
+    border-radius: 0;
+    box-shadow: none;
+    border-left: 1px solid $button_shadow_color;
+    &:first-child { border-left: 0; }
+  }
+}
+
+// Specia focus styles
+.button-row > .button,
+.button--plain {
+  &:focus { box-shadow: #{$button_focus_glow} inset; }
 }
