@@ -14,7 +14,7 @@ export function Button ({ children, ...props }) {
   return <SubmitButton {...props}>{children}</SubmitButton>
 }
 
-export function TextField ({ type, id = domId(), label, hint, ...props }) {
+export function TextField ({ type = 'text', id = domId(), label, hint, ...props }) {
   return (
     <>
       <label className='form__label' htmlFor={id}>{label}</label>

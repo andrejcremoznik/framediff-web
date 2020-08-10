@@ -18,9 +18,14 @@ export function randomColor () {
   return `hsl(${Math.floor(Math.random() * 360)}, 100%, ${Math.floor(Math.random() * 50) + 25}%)`
 }
 
+export function decorateObjectData (object) {
+  return [...object.slice(0, 3), nanoid()]
+}
+
 export default {
   domId,
   sleep,
   makeClassNameDecorator,
-  randomColor
+  randomColor,
+  decorateObjectData
 }

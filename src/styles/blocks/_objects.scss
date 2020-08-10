@@ -1,8 +1,32 @@
+$objects_canvas_bg: #181818 !default;
+$objects_canvas_frame_bg: darken($objects_canvas_bg, 2%) !default;
+$objects_canvas_border_radius: 5px !default;
+
 $objects_picker_bg: #555 !default;
 $objects_picker_tx: #ddd !default;
 $objects_picker_border: darken($objects_picker_bg, 20%) !default;
 $objects_picker_border_radius: 5px !default;
 
+// Canvas
+.objects-canvas__controls {
+  display: flex;
+  justify-content: center;
+}
+
+.objects-canvas__panel {
+  border-radius: $objects_canvas_border_radius;
+  background-color: $objects_canvas_bg;
+}
+
+.objects-canvas__frame {
+  fill: $objects_canvas_frame_bg;
+  stroke-width: 1;
+}
+
+// Editor
+.objects-editor__list-row { padding: 0.25em 0; }
+
+// Picker
 .objects-picker__items {
   display: flex;
   flex-wrap: wrap;

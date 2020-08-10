@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { nanoid } from 'nanoid/non-secure'
 import Form from '../../components/form/Form'
 import { Button } from '../../components/button/Button'
 import { isLongerThan } from '../../etc/validate'
+import { decorateObjectData } from '../../etc/utils'
 import { StateContext, DispatchContext } from '../../app/context'
 import { objects as objectsLocalStorage } from '../../app/storage'
 
@@ -46,7 +46,7 @@ export default function ObjectsEditor () {
     // Add new object to context
     dispatch({
       type: 'addLocalObject',
-      payload: [numericWidth, numericHeight, trimmedTitle, nanoid()]
+      payload: decorateObjectData([numericWidth, numericHeight, trimmedTitle])
     })
     e.target.reset()
     setTitle('')

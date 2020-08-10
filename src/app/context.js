@@ -6,7 +6,7 @@ export const DispatchContext = createContext()
 export const initialState = {
   isReady: false,
   localObjects: [],
-  objectsBeingCompared: []
+  globalObjects: []
 }
 
 export function reducer (draft, { type, payload }) {
@@ -23,15 +23,8 @@ export function reducer (draft, { type, payload }) {
     case 'removeLocalObject':
       draft.localObjects = draft.localObjects.filter(o => o[3] !== payload)
       break
-    case 'addToComparison':
-      draft.objectsBeingCompared.push(draft.localObjects.find(obj => obj[3] === payload))
-      break
-    case 'removeFromComparison':
-      draft.objectsBeingCompared.splice(draft.objectsBeingCompared.findIndex(obj => obj[3] === payload), 1)
-      break
-    case 'setComparedObjectColor':
-      draft.localObjects[draft.localObjects.findIndex(obj => obj[3] === payload[0])][4] = payload[1]
-      draft.objectsBeingCompared[draft.objectsBeingCompared.findIndex(obj => obj[3] === payload[0])][4] = payload[1]
+    case 'setGlobalObjects':
+      draft.globalObjects = payload
       break
     default:
   }

@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import { useImmerReducer } from 'use-immer'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-// import client from './app/feathers'
+import { objectsService } from './app/feathers'
 import { StateContext, DispatchContext, initialState, reducer } from './app/context'
 import { objects as objectsLocalStorage } from './app/storage'
+import { decorateObjectData } from './etc/utils'
 import Home from './pages/home/Home'
 import Objects from './pages/objects/Objects'
 import NotFound from './pages/notfound/NotFound'
@@ -16,7 +17,20 @@ export default function App () {
   useEffect(() => {
     async function bootstrap () {
       // Set custom objects from localStorage
-      dispatch({ type: 'setLocalObjects', payload: objectsLocalStorage.get() })
+      dispatch({
+        type: 'setLocalObjects',
+        payload: objectsLocalStorage.get().map(decorateObjectData)
+      })
+      // Get global objects
+      try {
+        const globalObjects = await objectsService.find({ paginate: false })
+        dispatch({
+          type: 'setGlobalObjects',
+          payload: globalObjects.data.map(({ width, height, title }) => decorateObjectData([width, height, title]))
+        })
+      } catch (err) {
+        console.error(`API error: ${err.message}`)
+      }
       // Ready
       dispatch({ type: 'setReady' })
     }

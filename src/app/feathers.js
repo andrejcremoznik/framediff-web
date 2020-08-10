@@ -7,5 +7,6 @@ const client = feathers()
 client.configure(feathers.socketio(socket))
 
 export const objectsService = client.service('objects')
+export const sessionsService = client.service('sessions')
 
 export default client
