@@ -7,6 +7,7 @@ $form_response_positive: green !default;
 $form_response_negative: red !default;
 $form_gutter: (mobile: 10px, tablet: 15px, desktop: 20px) !default;
 $form_autocomplete_highlight: lighten($form_field_bg, 10%) !default;
+$form_field_shadow: 0 1px 4px rgba(#000, 0.25) !default;
 $form_field_focus_glow: 0 0 1px 1px #0095ff !default;
 
 .form__row {
@@ -19,6 +20,7 @@ $form_field_focus_glow: 0 0 1px 1px #0095ff !default;
 .form__response {
   padding: 1em;
   border: 1px solid;
+  border-radius: $form_field_border_radius;
 }
 .form__response--success { color: $form_response_positive; }
 .form__response--error { color: $form_response_negative; }
@@ -40,6 +42,7 @@ $form_field_focus_glow: 0 0 1px 1px #0095ff !default;
   border-radius: $form_field_border_radius;
   color: $form_field_tx;
   background-color: $form_field_bg;
+  box-shadow: $form_field_shadow;
   font-family: inherit;
   font-size: 1em;
   line-height: inherit;

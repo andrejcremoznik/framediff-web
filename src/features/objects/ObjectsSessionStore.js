@@ -65,18 +65,20 @@ export default function ObjectsSessionStore () {
         object: object.slice(0, 3)
       })))
       .then(rsp => {
-        const errors = []
+        const responses = []
         rsp.forEach((result, idx) => {
           if (result.status === 'rejected') {
-            errors.push(`${localObjects[idx][2]}: ${result.reason?.message || 'Unknown error.'}`)
+            responses.push([`${localObjects[idx][2]}: ${result.reason?.message || 'Unknown error.'}`, 'error'])
+          } else {
+            responses.push([`${localObjects[idx][2]}: Saved.`, 'success'])
+            dispatch({
+              type: 'removeLocalObject',
+              payload: localObjects[localObjects.findIndex(obj => obj[2] === result.value.title)][3]
+            })
           }
         })
-        const errorsHtml = <ul>{errors.map((err, idx) => <li key={idx}>{err}</li>)}</ul>
-        if (errors.length) {
-          setResponse([errorsHtml, 'error'])
-        } else {
-          setResponse(['Objects saved.', 'success'])
-        }
+        const responseHtml = <ul>{responses.map(([msg, type], idx) => <li key={idx} className={`c--${type}`}>{msg}</li>)}</ul>
+        setResponse([responseHtml, 'default'])
       })
   }
 

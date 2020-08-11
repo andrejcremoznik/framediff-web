@@ -10,6 +10,8 @@ $default_line_height: 1.5 !default;
 $tx_color: #ddd !default;
 $bg_color: #222 !default;
 $link: #307bb4 !default;
+$positive: #40ff40 !default;
+$negative: #ff4040 !default;
 $focus_glow: 0 0 1px 1px #0095ff !default;
 
 // Font sizes
@@ -105,3 +107,5 @@ a:focus {
 .t--normal { text-transform: none; }
 
 .c--inherit { color: inherit; }
+.c--error { color: $negative; }
+.c--success { color: $positive; }

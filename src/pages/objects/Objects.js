@@ -1,6 +1,7 @@
 import React from 'react'
 import ObjectsEditor from '../../features/objects/ObjectsEditor'
 import ObjectsSessionStore from '../../features/objects/ObjectsSessionStore'
+import ObjectsList from '../../features/objects/ObjectsList'
 
 export default function Objects () {
   return (
@@ -10,6 +11,8 @@ export default function Objects () {
       <ObjectsEditor />
       <h2>Save or load an existing session</h2>
       <ObjectsSessionStore />
+      <h2>Global objects</h2>
+      <ObjectsList />
     </>
   )
 }

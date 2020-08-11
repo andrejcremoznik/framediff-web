@@ -2,7 +2,7 @@ import React, { useContext, useMemo, useState } from 'react'
 import { StateContext } from '../../app/context'
 import { randomColor } from '../../etc/utils'
 import Autocomplete from '../../components/form/Autocomplete'
-import { Button, ButtonRow } from '../../components/button/Button'
+import { Button, ButtonRow, InternalLinkButton } from '../../components/button/Button'
 import { ReactComponent as IconMinus } from '../../assets/search-minus.svg'
 import { ReactComponent as IconPlus } from '../../assets/search-plus.svg'
 import { ReactComponent as IconTimes } from '../../assets/times.svg'
@@ -72,11 +72,16 @@ export default function ObjectsComparison () {
   return (
     <>
       <div className='objects-picker__input gutter-bottom--s'>
-        <Autocomplete
-          options={objectsForAutocomplete}
-          onSelect={addObjectForComparison}
-          label='Select objects for comparison'
-        />
+        {allObjects.length ? (
+          <Autocomplete
+            options={objectsForAutocomplete}
+            onSelect={addObjectForComparison}
+            label='Select objects for comparison'
+            placeholder='Object name…'
+          />
+        ) : (
+          <InternalLinkButton to='/objects'>Add some objects</InternalLinkButton>
+        )}
       </div>
       <div className='objects-picker__items gutter-bottom--s'>
         {!!objectsBeingCompared.length && objectsBeingCompared.map(([w, h, t, id, c]) => (

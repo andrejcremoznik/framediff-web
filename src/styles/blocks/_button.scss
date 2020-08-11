@@ -3,8 +3,7 @@ $button_default_tx: #fff !default;
 $button_default_bg: #555 !default;
 $button_primary_tx: #fff !default;
 $button_primary_bg: #307bb4 !default;
-$button_shadow_color: rgba(#000, 0.25) !default;
-$button_shadow: 0 1px 4px $button_shadow_color !default;
+$button_shadow: 0 1px 4px rgba(#000, 0.25) !default;
 $button_focus_glow: 0 0 0 2px #0095ff !default;
 
 button.button,
@@ -43,7 +42,6 @@ input.button::-moz-focus-inner {
   font-size: 1em;
   font-weight: bold;
   font-style: normal;
-  color: $button_default_tx;
   background-color: $button_default_bg;
   background-image: linear-gradient(to bottom, rgba(#000, 0), rgba(#000, 0.2));
   text-shadow: 0 1px 1px darken($button_default_bg, 20%);
@@ -52,6 +50,8 @@ input.button::-moz-focus-inner {
     background-color: darken($button_default_bg, 10%);
   }
 }
+.button,
+a.button:visited { color: $button_default_tx; }
 
 .button[disabled],
 .button--disabled {
@@ -75,7 +75,6 @@ input.button--block { width: 100%; }
 
 // Colors
 .button--primary {
-  color: $button_primary_tx;
   background-color: $button_primary_bg;
   text-shadow: 0 1px 1px darken($button_primary_bg, 20%);
   &:hover {
@@ -83,6 +82,8 @@ input.button--block { width: 100%; }
     background-color: darken($button_primary_bg, 10%);
   }
 }
+.button--primary,
+a.button--primary:visited { color: $button_primary_tx; }
 
 // Mods
 .button--plain {
@@ -129,7 +130,7 @@ input.button--block { width: 100%; }
     flex: 1 1 auto;
     border-radius: 0;
     box-shadow: none;
-    border-left: 1px solid $button_shadow_color;
+    border-left: 1px solid rgba(#000, 0.25);
     &:first-child { border-left: 0; }
   }
 }

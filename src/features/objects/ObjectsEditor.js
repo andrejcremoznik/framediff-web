@@ -63,6 +63,7 @@ export default function ObjectsEditor () {
             name='title'
             label='Title'
             value={title}
+            placeholder='Object name…'
             required
             onChange={e => setTitle(e.target.value)}
           />
@@ -98,18 +99,22 @@ export default function ObjectsEditor () {
         </Form.Row>
         {error && <Form.Response type='error'>{error}</Form.Response>}
       </Form.Wrapper>
-      <hr />
-      <div className='objects-editor__list'>
-        {localObjects.map(([width, height, title, key]) => (
-          <div key={key} className='objects-editor__list-row columns columns--gaps'>
-            <div className='column double'>{title}</div>
-            <div className='column'>{width} mm × {height} mm</div>
-            <div className='column column--autosize'>
-              <Button mods={['s']} onClick={() => dispatch({ type: 'removeLocalObject', payload: key })}>Remove</Button>
-            </div>
+      {!!localObjects.length && (
+        <>
+          <hr />
+          <div className='objects-editor__list'>
+            {localObjects.map(([width, height, title, key]) => (
+              <div key={key} className='objects-editor__list-row columns columns--gaps'>
+                <div className='column double'>{title}</div>
+                <div className='column'>{width} mm × {height} mm</div>
+                <div className='column column--autosize'>
+                  <Button mods={['s']} onClick={() => dispatch({ type: 'removeLocalObject', payload: key })}>Remove</Button>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </>
+      )}
     </div>
   )
 }
