@@ -20,8 +20,8 @@ export function ExternalLinkButton ({ mods, className, children, ...props }) {
   return <a className={decorate(mods, className)} {...props}>{children}</a>
 }
 
-export function ButtonRow ({ className = '', children }) {
-  return <div className={`button-row ${className}`.trim()}>{children}</div>
+export function ButtonGroup ({ className = '', children }) {
+  return <div className={`button-group ${className}`.trim()}>{children}</div>
 }
 
 export default {
@@ -29,5 +29,5 @@ export default {
   SubmitButton,
   InternalLinkButton,
   ExternalLinkButton,
-  ButtonRow
+  ButtonGroup
 }

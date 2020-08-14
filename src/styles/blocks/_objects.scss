@@ -8,11 +8,6 @@ $objects_picker_border: darken($objects_picker_bg, 20%) !default;
 $objects_picker_border_radius: 5px !default;
 
 // Canvas
-.objects-canvas__controls {
-  display: flex;
-  justify-content: center;
-}
-
 .objects-canvas__panel {
   border-radius: $objects_canvas_border_radius;
   background-color: $objects_canvas_bg;
@@ -21,6 +16,10 @@ $objects_picker_border_radius: 5px !default;
 .objects-canvas__frame {
   fill: $objects_canvas_frame_bg;
   stroke-width: 1;
+  [data-view-type="stack"] & {
+    fill: none;
+    stroke-opacity: 0.75;
+  }
 }
 
 // Editor
@@ -41,6 +40,7 @@ $objects_picker_border_radius: 5px !default;
   background: $objects_picker_bg;
   overflow: hidden;
   white-space: nowrap;
+  &:hover > .objects-picker__item-legend { width: 2em; }
 }
 
 .objects-picker__item,
@@ -53,7 +53,6 @@ $objects_picker_border_radius: 5px !default;
   height: 100%;
   transition: width 0.2s ease;
   cursor: pointer;
-  &:hover { width: 1.5em; }
 }
 
 .objects-picker__item-title { padding: 0 0.5em; }

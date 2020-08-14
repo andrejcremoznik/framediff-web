@@ -49,6 +49,11 @@ input.button::-moz-focus-inner {
     color: $button_default_tx;
     background-color: darken($button_default_bg, 10%);
   }
+  &[data-state="active"] {
+    color: $button_default_tx;
+    background-color: darken($button_default_bg, 15%);
+    &:focus { box-shadow: none !important; }
+  }
 }
 .button,
 a.button:visited { color: $button_default_tx; }
@@ -80,6 +85,10 @@ input.button--block { width: 100%; }
   &:hover {
     color: $button_primary_tx;
     background-color: darken($button_primary_bg, 10%);
+  }
+  &[data-state="active"] {
+    color: $button_primary_tx;
+    background-color: darken($button_primary_bg, 15%);
   }
 }
 .button--primary,
@@ -121,7 +130,7 @@ a.button--primary:visited { color: $button_primary_tx; }
   }
 }
 
-.button-row {
+.button-group {
   display: flex;
   border-radius: $button_border_radius;
   box-shadow: $button_shadow;
@@ -136,7 +145,7 @@ a.button--primary:visited { color: $button_primary_tx; }
 }
 
 // Specia focus styles
-.button-row > .button,
+.button-group > .button,
 .button--plain {
   &:focus { box-shadow: #{$button_focus_glow} inset; }
 }

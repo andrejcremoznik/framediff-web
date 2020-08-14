@@ -1,13 +1,21 @@
-export const objects = {
-  get () {
-    const localObjects = JSON.parse(window.localStorage.getItem('objects'))
-    return Array.isArray(localObjects) ? localObjects : []
-  },
-  set (payload) {
-    const cleanPayload = payload.map(object => object.slice(0, 3))
-    window.localStorage.setItem('objects', JSON.stringify(cleanPayload))
-    return cleanPayload
-  }
+const getArray = key => {
+  const data = JSON.parse(window.localStorage.getItem(key))
+  return Array.isArray(data) ? data : []
 }
 
-export default { objects }
+const setArray = (key, data = []) => {
+  window.localStorage.setItem(key, JSON.stringify(data))
+  return data
+}
+
+export const objects = {
+  get: () => getArray('objects'),
+  set: data => setArray('objects', data.map(([w, h, title]) => ([w, h, title])))
+}
+
+export const comparing = {
+  get: () => getArray('comparing'),
+  set: data => setArray('comparing', data.map(([w, h, title]) => title))
+}
+
+export default { objects, comparing }
