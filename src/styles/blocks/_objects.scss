@@ -55,7 +55,12 @@ $objects_picker_border_radius: 5px !default;
   cursor: pointer;
 }
 
-.objects-picker__item-title { padding: 0 0.5em; }
+.objects-picker__item-title {
+  padding: 0 0.5em;
+  line-height: 1;
+}
+
+.objects-picker__item-size { display: block; }
 
 .objects-picker__item-x {
   padding: 0.25em 0.5em;

@@ -3,6 +3,7 @@ $default_font_size: (mobile: 14, tablet: 15, desktop: 16) !default;
 $font_h1: (mobile: 24, tablet: 32, desktop: 32) !default;
 $font_h2: (mobile: 20, tablet: 24, desktop: 24) !default;
 $font_h3: (mobile: 18, tablet: 20, desktop: 20) !default;
+$font_xs: (mobile: 10, tablet: 11, desktop: 12) !default;
 $font_s: (mobile: 12, tablet: 12, desktop: 14) !default;
 $font_m: (mobile: 14, tablet: 15, desktop: 16) !default;
 $font_l: (mobile: 16, tablet: 18, desktop: 18) !default;
@@ -19,6 +20,7 @@ html { font-size: #{map_get($default_font_size, mobile)}px; }
 .h1, h1 { font-size: rem($font_h1); }
 .h2, h2 { font-size: rem($font_h2); }
 .h3, h3 { font-size: rem($font_h3); }
+.f--xs { font-size: rem($font_xs); }
 .f--s { font-size: rem($font_s); }
 .f--m { font-size: rem($font_m); }
 .f--l { font-size: rem($font_l); }
@@ -27,6 +29,7 @@ html { font-size: #{map_get($default_font_size, mobile)}px; }
   .h1, h1 { font-size: rem($font_h1, tablet); }
   .h2, h2 { font-size: rem($font_h2, tablet); }
   .h3, h3 { font-size: rem($font_h3, tablet); }
+  .f--xs { font-size: rem($font_xs, tablet); }
   .f--s { font-size: rem($font_s, tablet); }
   .f--m { font-size: rem($font_m, tablet); }
   .f--l { font-size: rem($font_l, tablet); }
@@ -36,6 +39,7 @@ html { font-size: #{map_get($default_font_size, mobile)}px; }
   .h1, h1 { font-size: rem($font_h1, desktop); }
   .h2, h2 { font-size: rem($font_h2, desktop); }
   .h3, h3 { font-size: rem($font_h3, desktop); }
+  .f--xs { font-size: rem($font_xs, desktop); }
   .f--s { font-size: rem($font_s, desktop); }
   .f--m { font-size: rem($font_m, desktop); }
   .f--l { font-size: rem($font_l, desktop); }

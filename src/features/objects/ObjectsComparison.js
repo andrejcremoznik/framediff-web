@@ -120,7 +120,7 @@ export default function ObjectsComparison () {
         {!!objectsBeingCompared.length && objectsBeingCompared.map(([w, h, t, id, c]) => (
           <div key={id} className='objects-picker__item'>
             <div className='objects-picker__item-legend' style={{ backgroundColor: c }} onClick={randomizeColor(id)} />
-            <div className='objects-picker__item-title'>{t}</div>
+            <div className='objects-picker__item-title'>{t} <small className='objects-picker__item-size f--xs'>{w} × {h}</small></div>
             <Button className='objects-picker__item-x' mods={['symbol', 'plain']} onClick={removeObjectFromComparison(id)} aria-label='Remove object'><IconTimes /></Button>
           </div>
         ))}
