@@ -3,7 +3,7 @@ import { useImmerReducer } from 'use-immer'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { objectsService } from './app/feathers'
 import { StateContext, DispatchContext, initialState, reducer } from './app/context'
-import { objects as objectsLocalStorage } from './app/storage'
+import { theme as themeStorage, objects as objectsStorage } from './app/storage'
 import { decorateObjectData } from './etc/utils'
 import Home from './pages/home/Home'
 import Objects from './pages/objects/Objects'
@@ -16,10 +16,15 @@ export default function App () {
 
   useEffect(() => {
     async function bootstrap () {
+      // Set theme
+      dispatch({
+        type: 'setTheme',
+        payload: themeStorage.get()
+      })
       // Set custom objects from localStorage
       dispatch({
         type: 'setLocalObjects',
-        payload: objectsLocalStorage.get().map(decorateObjectData)
+        payload: objectsStorage.get().map(decorateObjectData)
       })
       // Get global objects
       try {
@@ -36,6 +41,14 @@ export default function App () {
     }
     bootstrap()
   }, [dispatch])
+
+  useEffect(() => {
+    if (state.isReady) {
+      document.body.classList.remove('dark', 'light')
+      document.body.classList.add(state.theme)
+      themeStorage.set(state.theme)
+    }
+  }, [state.theme, state.isReady])
 
   return (
     <DispatchContext.Provider value={dispatch}>

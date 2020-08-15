@@ -4,8 +4,8 @@ import { StateContext } from '../../app/context'
 export default function ObjectsList () {
   const { globalObjects } = useContext(StateContext)
   return (
-    <div className='objects-list'>{globalObjects.map(globalObject =>
-      <li key={globalObject[3]}>{globalObject[2]}</li>)}
+    <div className='objects-list'>{globalObjects.map(([w, h, title, id]) =>
+      <li key={id}>{title} <small>{`(${w} mm × ${h} mm)`}</small></li>)}
     </div>
   )
 }

@@ -1,25 +1,44 @@
-$objects_canvas_bg: #181818 !default;
-$objects_canvas_frame_bg: darken($objects_canvas_bg, 2%) !default;
+$objects_canvas_bg: (
+  dark: darken(#222, 5%),
+  light: lighten(#ddd, 5%)
+) !default;
+$objects_canvas_frame_bg: (
+  dark: darken(map_get($objects_canvas_bg, dark), 2%),
+  light: lighten(map_get($objects_canvas_bg, light), 2%)
+) !default;
 $objects_canvas_border_radius: 5px !default;
 
-$objects_picker_bg: #555 !default;
-$objects_picker_tx: #ddd !default;
-$objects_picker_border: darken($objects_picker_bg, 20%) !default;
+$objects_picker_bg: (
+  dark: lighten(#222, 20%),
+  light: darken(#ddd, 20%)
+) !default;
+$objects_picker_tx: (
+  dark: #ddd,
+  light: #222
+) !default;
+$objects_picker_border_color: (
+  dark: darken(map_get($objects_picker_bg, dark), 25%),
+  light: darken(map_get($objects_picker_bg, light), 25%)
+) !default;
 $objects_picker_border_radius: 5px !default;
+$objects_picker_gutter: (mobile: 10px, tablet: 15px, desktop: 20px) !default;
+
 
 // Canvas
 .objects-canvas__panel {
   border-radius: $objects_canvas_border_radius;
-  background-color: $objects_canvas_bg;
+  background-color: map_get($objects_canvas_bg, dark);
+  .light & { background-color: map_get($objects_canvas_bg, light); }
 }
 
 .objects-canvas__frame {
-  fill: $objects_canvas_frame_bg;
+  fill: map_get($objects_canvas_frame_bg, dark);
   stroke-width: 1;
   [data-view-type="stack"] & {
     fill: none;
     stroke-opacity: 0.75;
   }
+  .light & { fill: map_get($objects_canvas_frame_bg, light); }
 }
 
 // Editor
@@ -29,18 +48,27 @@ $objects_picker_border_radius: 5px !default;
 .objects-picker__items {
   display: flex;
   flex-wrap: wrap;
+  gap: map_get($objects_picker_gutter, mobile);
+  @include breakpoint(tablet) { gap: map_get($objects_picker_gutter, mobile); }
+  @include breakpoint(desktop) { gap: map_get($objects_picker_gutter, desktop); }
 }
 .objects-picker__item {
   display: flex;
   align-items: center;
-  margin-right: 1em;
-  border: 1px solid $objects_picker_border;
+  border-style: solid;
+  border-width: 1px;
+  border-color: map_get($objects_picker_border_color, dark);
   border-radius: $objects_picker_border_radius;
-  color: $objects_picker_tx;
-  background: $objects_picker_bg;
+  color: map_get($objects_picker_tx, dark);
+  background-color: map_get($objects_picker_bg, dark);
   overflow: hidden;
   white-space: nowrap;
   &:hover > .objects-picker__item-legend { width: 2em; }
+  .light & {
+    border-color: map_get($objects_picker_border_color, light);
+    color: map_get($objects_picker_tx, light);
+    background-color: map_get($objects_picker_bg, light);
+  }
 }
 
 .objects-picker__item,
@@ -64,6 +92,12 @@ $objects_picker_border_radius: 5px !default;
 
 .objects-picker__item-x {
   padding: 0.25em 0.5em;
-  border-left: 1px solid $objects_picker_border;
-  &:hover { background-color: darken($objects_picker_bg, 10%); }
+  border-style: solid;
+  border-width: 0 0 0 1px;
+  border-color: map_get($objects_picker_border_color, dark);
+  .light & { border-color: map_get($objects_picker_border_color, light); }
+  &:hover {
+    background-color: darken(map_get($objects_picker_bg, dark), 10%);
+    .light & { background-color: darken(map_get($objects_picker_bg, light), 10%); }
+  }
 }

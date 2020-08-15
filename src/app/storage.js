@@ -18,4 +18,9 @@ export const comparing = {
   set: data => setArray('comparing', data.map(([w, h, title]) => title))
 }
 
-export default { objects, comparing }
+export const theme = {
+  get: () => window.localStorage.getItem('theme') || 'dark',
+  set: data => window.localStorage.setItem('theme', data)
+}
+
+export default { objects, comparing, theme }

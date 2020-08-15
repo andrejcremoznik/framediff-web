@@ -1,7 +1,10 @@
-$nav_default_color: #ddd !default;
-$nav_active_color: #307bb4 !default;
+$nav_default_color: (dark: #ddd, light: #333) !default;
+$nav_active_color: #f0f !default;
 
-.nav { display: flex; }
+.nav {
+  display: flex;
+  margin-left: auto;
+}
 
 .nav__item {
   position: relative;
@@ -9,16 +12,18 @@ $nav_active_color: #307bb4 !default;
   margin: 0 0.5em;
   padding: 0.5em 1em;
   text-decoration: none;
-  color: $nav_default_color !important;
+  color: map_get($nav_default_color, dark) !important;
+  .light & { color: map_get($nav_default_color, light) !important; }
   &:focus { outline: 0; }
   &::after {
     content: "";
     position: absolute;
     right: 0; bottom: 0; left: 0;
     height: 2px;
-    background-color: $nav_default_color;
+    background-color: map_get($nav_default_color, dark);
     transform: scaleX(0);
     transition: transform 200ms ease-out;
+    .light & { background-color: map_get($nav_default_color, light); }
   }
   &.active::after { background-color: $nav_active_color; }
   &:hover,

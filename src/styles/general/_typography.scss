@@ -8,12 +8,12 @@ $font_s: (mobile: 12, tablet: 12, desktop: 14) !default;
 $font_m: (mobile: 14, tablet: 15, desktop: 16) !default;
 $font_l: (mobile: 16, tablet: 18, desktop: 18) !default;
 $default_line_height: 1.5 !default;
-$tx_color: #ddd !default;
-$bg_color: #222 !default;
-$link: #307bb4 !default;
-$positive: #40ff40 !default;
-$negative: #ff4040 !default;
-$focus_glow: 0 0 1px 1px #0095ff !default;
+$tx_color: (dark: #ddd, light: #333) !default;
+$bg_color: (dark: #222, light: #eee) !default;
+$link: blue !default;
+$positive: green !default;
+$negative: red !default;
+$focus_glow: 0 0 1px 1px #f0f !default;
 
 // Font sizes
 html { font-size: #{map_get($default_font_size, mobile)}px; }
@@ -46,16 +46,23 @@ html { font-size: #{map_get($default_font_size, mobile)}px; }
 }
 
 body {
-  color: $tx_color;
-  background: $bg_color;
+  color: map_get($tx_color, dark);
+  background-color: map_get($bg_color, dark);
   font-family: $default_font_family;
   line-height: $default_line_height;
   -webkit-font-smoothing: antialiased;
+  &.light {
+    color: map_get($tx_color, light);
+    background-color: map_get($bg_color, light);
+  }
 }
 
 img, svg { vertical-align: middle; }
 
-hr { border-color: darken($bg_color, 5%) transparent lighten($bg_color, 5%); }
+hr {
+  border-color: darken(map_get($bg_color, dark), 5%) transparent lighten(map_get($bg_color, dark), 5%);
+  .light & { border-color: darken(map_get($bg_color, light), 5%) transparent lighten(map_get($bg_color, light), 5%); }
+}
 
 p, ul, ol, table, blockquote, figure {
   margin: 0 0 #{$default_line_height}em;

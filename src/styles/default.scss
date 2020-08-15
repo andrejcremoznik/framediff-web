@@ -33,41 +33,39 @@ $default_line_height: 1.5;
 /*
  * Colors
  */
-$tx_color: #ddd;
-$tx_color_h: lighten($tx_color, 5%);
-$tx_color_2h: lighten($tx_color, 5%);
-$tx_color_3h: #fff;
-$tx_color_b: darken($tx_color, 5%);
-$tx_color_2b: darken($tx_color, 10%);
-$tx_color_3b: darken($tx_color, 20%);
+// $tx_color: #ddd;
+// $tx_color_h: lighten($tx_color, 5%);
+// $tx_color_2h: lighten($tx_color, 5%);
+// $tx_color_3h: #fff;
+// $tx_color_b: darken($tx_color, 5%);
+// $tx_color_2b: darken($tx_color, 10%);
+// $tx_color_3b: darken($tx_color, 20%);
 
-$bg_color: #222;
-$bg_color_h: lighten($bg_color, 5%);
-$bg_color_2h: lighten($bg_color, 10%);
-$bg_color_3h: lighten($bg_color, 20%);
-$bg_color_b: darken($bg_color, 5%);
-$bg_color_2b: darken($bg_color, 10%);
-$bg_color_3b: #000;
+// $bg_color: #222;
+// $bg_color_h: lighten($bg_color, 5%);
+// $bg_color_2h: lighten($bg_color, 10%);
+// $bg_color_3h: lighten($bg_color, 20%);
+// $bg_color_b: darken($bg_color, 5%);
+// $bg_color_2b: darken($bg_color, 10%);
+// $bg_color_3b: #000;
 
-$brand: #e65ba5;
+// $brand: #e65ba5;
 
-$positive: #40ff40;
-$negative: #ff4040;
+// $positive: #40ff40;
+// $negative: #ff4040;
 
-$link: #307bb4;
+// $link: #307bb4;
 
 
 /*
 * Various visual features
 */
 $border_radius_s: 5px;
-$border_radius_m: 10px;
 
-// box-shadows:
-$glow: 0 5px 10px -5px rgba(#fff, 0.2);
-$shadow: 0 1px 4px rgba(#000, 0.25);
+// box-shadows
+$shadow: 0 1px 4px rgba(#000, 0.5);
 
-$focus_glow: 0 0 0 2px #0095ff;
+$focus_glow: 0 0 1px 1px #0095ff;
 
 /*
  * Components
@@ -75,13 +73,13 @@ $focus_glow: 0 0 0 2px #0095ff;
  */
 
 // Buttons
-$button_default_tx: $tx_color_3h;
-$button_default_bg: $bg_color_3h;
-$button_primary_tx: $tx_color_3h;
-$button_primary_bg: $brand;
-$button_border_radius: $border_radius_s;
-$button_shadow: $shadow;
-$button_focus_glow: $focus_glow;
+// $button_default_tx: $tx_color_3h;
+// $button_default_bg: $bg_color_3h;
+// $button_primary_tx: #fff;
+// $button_primary_bg: $brand;
+// $button_border_radius: $border_radius_s;
+// $button_shadow: $shadow;
+// $button_focus_glow: $focus_glow;
 
 // Columns
 $columns_gaps: $gutter_s;
@@ -92,30 +90,26 @@ $box_padding: $gutter_s;
 // Header
 $header_z: $z_header;
 $header_to_content_gutter: $gutter_m;
+// $header_tx: $tx_color;
+// $header_bg: $bg_color_2b;
 
 // Footer
 $footer_to_content_gutter: $gutter_m;
 
 // Navigation
-$nav_default_color: $tx_color;
-$nav_active_color: $brand;
+// $nav_default_color: $tx_color;
+// $nav_active_color: $brand;
 
 // Form
-$form_field_tx: $tx_color_h;
-$form_field_bg: $bg_color_h;
-$form_response_positive: $positive;
-$form_response_negative: $negative;
 $form_gutter: $gutter_s;
-$form_field_border_radius: $border_radius_s;
-$form_field_shadow: $shadow;
-$form_field_focus_glow: $focus_glow;
+// $form_field_tx: $tx_color_h;
+// $form_field_bg: $bg_color_h;
+// $form_response_positive: $positive;
+// $form_response_negative: $negative;
+// $form_field_border_radius: $border_radius_s;
+// $form_field_shadow: $shadow;
+// $form_field_focus_glow: $focus_glow;
 
-// Dropdown
-$dropdown_tx: $tx_color;
-$dropdown_bg: $bg_color_2b;
-$dropdown_padding: $gutter_s;
-$dropdown_border_radius: $border_radius_s;
-$dropdown_shadow: $glow;
 
 /*
  * Import app's components

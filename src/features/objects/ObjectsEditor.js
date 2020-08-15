@@ -4,7 +4,7 @@ import { Button } from '../../components/button/Button'
 import { isLongerThan } from '../../etc/validate'
 import { decorateObjectData } from '../../etc/utils'
 import { StateContext, DispatchContext } from '../../app/context'
-import { objects as objectsLocalStorage } from '../../app/storage'
+import { objects as objectsStorage } from '../../app/storage'
 
 export default function ObjectsEditor () {
   const [title, setTitle] = useState('')
@@ -16,7 +16,7 @@ export default function ObjectsEditor () {
 
   // Persist objects in context whenever they change
   useEffect(() => {
-    objectsLocalStorage.set(localObjects)
+    objectsStorage.set(localObjects)
   }, [localObjects])
 
   function addObject (e) {
@@ -108,7 +108,7 @@ export default function ObjectsEditor () {
                 <div className='column double'>{title}</div>
                 <div className='column'>{width} mm × {height} mm</div>
                 <div className='column column--autosize'>
-                  <Button mods={['s']} onClick={() => dispatch({ type: 'removeLocalObject', payload: key })}>Remove</Button>
+                  <Button mods={['s', 'default']} onClick={() => dispatch({ type: 'removeLocalObject', payload: key })}>Remove</Button>
                 </div>
               </div>
             ))}

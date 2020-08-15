@@ -1,5 +1,5 @@
-$header_tx: #ddd !default;
-$header_bg: #111 !default;
+$header_tx: (dark: #ddd, light: #333) !default;
+$header_bg: (dark: #111, light: #ccc) !default;
 $header_z: 10 !default;
 $header_to_content_gutter: (mobile: 20px, tablet: 30px, desktop: 40px) !default;
 
@@ -8,8 +8,12 @@ $header_to_content_gutter: (mobile: 20px, tablet: 30px, desktop: 40px) !default;
   top: 0; right: 0; left: 0;
   z-index: $header_z;
   margin-bottom: map_get($header_to_content_gutter, mobile);
-  color: $header_tx;
-  background-color: $header_bg;
+  color: map_get($header_tx, dark);
+  background-color: map_get($header_bg, dark);
   @include breakpoint(tablet) { margin-bottom: map_get($header_to_content_gutter, tablet); }
   @include breakpoint(desktop) { margin-bottom: map_get($header_to_content_gutter, desktop); }
+  .light & {
+    color: map_get($header_tx, dark);
+    background-color: map_get($header_bg, dark);
+  }
 }

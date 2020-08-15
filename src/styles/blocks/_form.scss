@@ -1,14 +1,30 @@
+$form_gutter: (mobile: 10px, tablet: 15px, desktop: 20px) !default;
 $form_field_padding: 8px !default;
 $form_field_inner_height: 20px !default;
 $form_field_border_radius: 5px !default;
-$form_field_tx: #eee !default;
-$form_field_bg: #333 !default;
+$form_field_tx: (
+  dark: lighten(#ddd, 10%),
+  light: darken(#333, 10%)
+) !default;
+$form_field_bg: (
+  dark: lighten(#222, 10%),
+  light: darken(#ddd, 10%)
+) !default;
+$form_autocomplete_highlight: (
+  dark: lighten(map_get($form_field_bg, dark), 10%),
+  light: darken(map_get($form_field_bg, light), 10%)
+) !default;
+$form_field_shadow_color: (
+  dark: rgba(#000, 0.5),
+  light: rgba(#000, 0.25)
+) !default;
+$form_field_shadow: (
+  dark: 0 1px 4px map_get($form_field_shadow_color, dark),
+  light: 0 1px 4px map_get($form_field_shadow_color, light)
+) !default;
+$form_field_focus_glow: 0 0 1px 1px #f0f !default;
 $form_response_positive: green !default;
 $form_response_negative: red !default;
-$form_gutter: (mobile: 10px, tablet: 15px, desktop: 20px) !default;
-$form_autocomplete_highlight: lighten($form_field_bg, 10%) !default;
-$form_field_shadow: 0 1px 4px rgba(#000, 0.25) !default;
-$form_field_focus_glow: 0 0 1px 1px #0095ff !default;
 
 .form__row {
   margin-bottom: map_get($form_gutter, mobile);
@@ -40,15 +56,20 @@ $form_field_focus_glow: 0 0 1px 1px #0095ff !default;
   padding: $form_field_padding;
   border: 0;
   border-radius: $form_field_border_radius;
-  color: $form_field_tx;
-  background-color: $form_field_bg;
-  box-shadow: $form_field_shadow;
+  color: map_get($form_field_tx, dark);
+  background-color: map_get($form_field_bg, dark);
+  box-shadow: map_get($form_field_shadow, dark);
   font-family: inherit;
   font-size: 1em;
   line-height: inherit;
   font-weight: normal;
   font-style: normal;
   &:focus { box-shadow: $form_field_focus_glow; }
+  .light & {
+    color: map_get($form_field_tx, light);
+    background-color: map_get($form_field_bg, light);
+    box-shadow: map_get($form_field_shadow, light);
+  }
 }
 
 .form__field--radio,
@@ -132,13 +153,20 @@ $form_field_focus_glow: 0 0 1px 1px #0095ff !default;
   border-radius: 0 0 $form_field_border_radius $form_field_border_radius;
   overflow-x: hidden;
   overflow-y: auto;
-  color: $form_field_tx;
-  background: $form_field_bg;
+  color: map_get($form_field_tx, dark);
+  background-color: map_get($form_field_bg, dark);
   box-shadow: 0 5px 5px -5px rgba(#000, 0.5);
+  .light & {
+    color: map_get($form_field_tx, light);
+    background-color: map_get($form_field_bg, light);
+  }
 }
 
 .form__autocomplete-result {
   padding: $form_field_padding;
   &:hover,
-  &[tabindex="0"] { background-color: $form_autocomplete_highlight; }
+  &[tabindex="0"] {
+    background-color: map_get($form_autocomplete_highlight, dark);
+    .light & { background-color: map_get($form_autocomplete_highlight, dark); }
+  }
 }

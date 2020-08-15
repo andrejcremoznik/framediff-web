@@ -1,6 +1,6 @@
 import React, { useContext, useMemo, useState, useEffect } from 'react'
 import { StateContext } from '../../app/context'
-import { comparing as comparingLocalStorage } from '../../app/storage'
+import { comparing as comparingStorage } from '../../app/storage'
 import { randomColor } from '../../etc/utils'
 import Autocomplete from '../../components/form/Autocomplete'
 import { Button, ButtonGroup, InternalLinkButton } from '../../components/button/Button'
@@ -60,11 +60,13 @@ export default function ObjectsComparison () {
       ...allObjects.find(obj => obj[3] === id),
       randomColor()
     ]])
+    comparingStorage.set(objects)
     setObjectsBeingCompared(objects)
   }
 
   const removeObjectFromComparison = id => () => {
     const objects = objectsBeingCompared.filter(obj => obj[3] !== id)
+    comparingStorage.set(objects)
     setObjectsBeingCompared(objects)
   }
 
@@ -88,18 +90,13 @@ export default function ObjectsComparison () {
   const changeView = type => () => setView(type)
 
   useEffect(() => {
-    if (!objectsBeingCompared.length) {
-      const prefillCandidates = comparingLocalStorage.get()
-      const objects = allObjects
-        .filter(object => prefillCandidates.includes(object[2]))
-        .map(object => ([...object, randomColor()]))
-      setObjectsBeingCompared(objects)
-    }
-    return () => {
-      if (objectsBeingCompared.length) {
-        comparingLocalStorage.set(objectsBeingCompared)
-      }
-    }
+    if (objectsBeingCompared.length) return
+    const prefillCandidates = comparingStorage.get()
+    if (!prefillCandidates.length) return
+    const objects = allObjects
+      .filter(object => prefillCandidates.includes(object[2]))
+      .map(object => ([...object, randomColor()]))
+    setObjectsBeingCompared(objects)
   }, [allObjects, objectsBeingCompared])
 
   return (
@@ -119,7 +116,7 @@ export default function ObjectsComparison () {
       <div className='objects-picker__items gutter-bottom--s'>
         {!!objectsBeingCompared.length && objectsBeingCompared.map(([w, h, t, id, c]) => (
           <div key={id} className='objects-picker__item'>
-            <div className='objects-picker__item-legend' style={{ backgroundColor: c }} onClick={randomizeColor(id)} />
+            <div className='objects-picker__item-legend' style={{ backgroundColor: c }} onClick={randomizeColor(id)} title='Change color' />
             <div className='objects-picker__item-title'>{t} <small className='objects-picker__item-size f--xs'>{w} × {h}</small></div>
             <Button className='objects-picker__item-x' mods={['symbol', 'plain']} onClick={removeObjectFromComparison(id)} aria-label='Remove object'><IconTimes /></Button>
           </div>
@@ -127,12 +124,12 @@ export default function ObjectsComparison () {
       </div>
       <div className='objects-canvas__controls columns columns--apart gutter-bottom--s'>
         <ButtonGroup className='column'>
-          <Button mods={['symbol']} onClick={changeView('sidebyside')} aria-label='Show side by side' data-state={view === 'sidebyside' && 'active'}><IconGrid /></Button>
-          <Button mods={['symbol']} onClick={changeView('stack')} aria-label='Show stacked' data-state={view === 'stack' && 'active'}><IconStack /></Button>
+          <Button mods={['symbol', 'default']} onClick={changeView('sidebyside')} aria-label='Show side by side' data-state={view === 'sidebyside' && 'active'}><IconGrid /></Button>
+          <Button mods={['symbol', 'default']} onClick={changeView('stack')} aria-label='Show stacked' data-state={view === 'stack' && 'active'}><IconStack /></Button>
         </ButtonGroup>
         <ButtonGroup className='column'>
-          <Button mods={['symbol']} onClick={resizeCanvas('decrease')} aria-label='Zoom out'><IconMinus /></Button>
-          <Button mods={['symbol']} onClick={resizeCanvas('increase')} aria-label='Zoom in'><IconPlus /></Button>
+          <Button mods={['symbol', 'default']} onClick={resizeCanvas('decrease')} aria-label='Zoom out'><IconMinus /></Button>
+          <Button mods={['symbol', 'default']} onClick={resizeCanvas('increase')} aria-label='Zoom in'><IconPlus /></Button>
         </ButtonGroup>
       </div>
       <div className='objects-canvas__panel responsive' style={{ paddingBottom: `${canvasHeight}%` }}>

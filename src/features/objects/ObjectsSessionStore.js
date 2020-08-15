@@ -102,7 +102,7 @@ export default function ObjectsSessionStore () {
           <Button mods={['block', 'primary']} onClick={saveSession} disabled={localObjects.length < 1}>Save session</Button>
         </div>
         <div className='column'>
-          <Button mods={['block']} onClick={saveGlobalObjects} disabled={localObjects.length < 1}>Save objects globally</Button>
+          <Button mods={['block', 'default']} onClick={saveGlobalObjects} disabled={localObjects.length < 1}>Save objects globally</Button>
         </div>
       </Form.Row>
       {response[0] && <Form.Response type={response[1]}>{response[0]}</Form.Response>}

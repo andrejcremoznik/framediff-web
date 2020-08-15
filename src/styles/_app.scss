@@ -6,12 +6,9 @@
 @import './general/typography';
 
 // Blocks
-@import './blocks/box';
 @import './blocks/button';
 @import './blocks/columns';
-@import './blocks/dropdown';
 @import './blocks/form';
-@import './blocks/splash';
 
 // Specific blocks
 @import './blocks/footer';
@@ -19,3 +16,4 @@
 @import './blocks/logo';
 @import './blocks/nav';
 @import './blocks/objects';
+@import './blocks/theme-switcher';
