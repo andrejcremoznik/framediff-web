@@ -25,7 +25,7 @@ export default function Header ({ className = '', children }) {
         <NavLink className='nav__item' to='/objects'>Manage objects</NavLink>
       </nav>
       <div className='theme-switcher column'>
-        <Button mods={['symbol', 'plain']} onClick={toggleTheme} aria-label='Change theme'>{theme === 'day' ? <IconMoon /> : <IconSun />}</Button>
+        <Button mods={['symbol', 'plain']} onClick={toggleTheme} aria-label='Change theme'>{theme === 'light' ? <IconMoon title='Dark' /> : <IconSun title='Light' />}</Button>
       </div>
     </header>
   )

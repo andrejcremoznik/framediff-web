@@ -33,85 +33,163 @@ $default_line_height: 1.5;
 /*
  * Colors
  */
-// $tx_color: #ddd;
-// $tx_color_h: lighten($tx_color, 5%);
-// $tx_color_2h: lighten($tx_color, 5%);
-// $tx_color_3h: #fff;
-// $tx_color_b: darken($tx_color, 5%);
-// $tx_color_2b: darken($tx_color, 10%);
-// $tx_color_3b: darken($tx_color, 20%);
+// Brand color
+$brand: #4682b4;
 
-// $bg_color: #222;
-// $bg_color_h: lighten($bg_color, 5%);
-// $bg_color_2h: lighten($bg_color, 10%);
-// $bg_color_3h: lighten($bg_color, 20%);
-// $bg_color_b: darken($bg_color, 5%);
-// $bg_color_2b: darken($bg_color, 10%);
-// $bg_color_3b: #000;
+// Default text and background colors:
+$tx_color: (
+  dark: #ccc,
+  light: #333
+);
+$bg_color: (
+  dark: #222,
+  light: #ddd
+);
+// Text variations
+$tx_color_1h: (
+  dark: lighten(map_get($tx_color, dark), 5%),
+  light: lighten(map_get($tx_color, light), 5%)
+);
+$tx_color_2h: (
+  dark: lighten(map_get($tx_color, dark), 10%),
+  light: lighten(map_get($tx_color, light), 10%)
+);
+$tx_color_3h: (
+  dark: lighten(map_get($tx_color, dark), 20%),
+  light: lighten(map_get($tx_color, light), 20%)
+);
+$tx_color_1b: (
+  dark: darken(map_get($tx_color, dark), 5%),
+  light: darken(map_get($tx_color, light), 5%)
+);
+$tx_color_2b: (
+  dark: darken(map_get($tx_color, dark), 10%),
+  light: darken(map_get($tx_color, light), 10%)
+);
+$tx_color_3b: (
+  dark: darken(map_get($tx_color, dark), 20%),
+  light: darken(map_get($tx_color, light), 20%)
+);
+// Background variations
+$bg_color_1h: (
+  dark: lighten(map_get($bg_color, dark), 5%),
+  light: lighten(map_get($bg_color, light), 5%)
+);
+$bg_color_2h: (
+  dark: lighten(map_get($bg_color, dark), 10%),
+  light: lighten(map_get($bg_color, light), 10%)
+);
+$bg_color_3h: (
+  dark: lighten(map_get($bg_color, dark), 20%),
+  light: lighten(map_get($bg_color, light), 20%)
+);
+$bg_color_1b: (
+  dark: darken(map_get($bg_color, dark), 5%),
+  light: darken(map_get($bg_color, light), 5%)
+);
+$bg_color_2b: (
+  dark: darken(map_get($bg_color, dark), 10%),
+  light: darken(map_get($bg_color, light), 10%)
+);
+$bg_color_3b: (
+  dark: darken(map_get($bg_color, dark), 20%),
+  light: darken(map_get($bg_color, light), 20%)
+);
 
-// $brand: #e65ba5;
-
-// $positive: #40ff40;
-// $negative: #ff4040;
-
-// $link: #307bb4;
-
+// Other colors
+$link_color: (dark: aqua, light: dodgerblue);
+$positive: forestgreen;
+$negative: crimson;
+$focus_glow: 0 0 1px 1px deepskyblue;
 
 /*
-* Various visual features
-*/
+ * Various visual features
+ */
 $border_radius_s: 5px;
 
-// box-shadows
-$shadow: 0 1px 4px rgba(#000, 0.5);
+$basic_shadow_color: (
+  dark: rgba(#000, 0.5),
+  light: rgba(#000, 0.25)
+);
+$basic_shadow: (
+  dark: 0 1px 4px map_get($basic_shadow_color, dark),
+  light: 0 1px 4px map_get($basic_shadow_color, light)
+);
 
 $focus_glow: 0 0 1px 1px #0095ff;
 
-/*
+
+/* ===========================================
  * Components
- * override defaults for used components here
+ * override defaults for used components
+ * =========================================== */
+
+/*
+ * Buttons
  */
+$button_border_radius: $border_radius_s;
+// Shadows: you should only override one of the shadow variables
+// $button_shadow_color: $basic_shadow_color;
+$button_shadow: $basic_shadow;
+// Focus state should have a distinct style
+$button_focus_glow: $focus_glow;
+// Color styles
+$button_default_tx: $tx_color_2h;
+$button_default_bg: $bg_color_2h;
+$button_primary_tx: #fff;
+$button_primary_bg: $brand;
 
-// Buttons
-// $button_default_tx: $tx_color_3h;
-// $button_default_bg: $bg_color_3h;
-// $button_primary_tx: #fff;
-// $button_primary_bg: $brand;
-// $button_border_radius: $border_radius_s;
-// $button_shadow: $shadow;
-// $button_focus_glow: $focus_glow;
+/*
+ * Forms
+ */
+$form_field_border_radius: $border_radius_s;
+$form_gutter: $gutter_s;
+// Shadows: you should override both or none of the shadow variables
+$form_field_shadow_color: $basic_shadow_color;
+$form_field_shadow: $basic_shadow;
+// Focus state should have a distinct style
+$form_field_focus_glow: $focus_glow;
+// Field colors
+$form_field_tx: $tx_color_2h;
+$form_field_bg: $bg_color_2h;
+$form_response_positive: $positive;
+$form_response_negative: $negative;
 
-// Columns
+/*
+ * Columns
+ */
 $columns_gaps: $gutter_s;
 
-// Box
-$box_padding: $gutter_s;
-
-// Header
-$header_z: $z_header;
+/*
+ * Header
+ */
 $header_to_content_gutter: $gutter_m;
-// $header_tx: $tx_color;
-// $header_bg: $bg_color_2b;
-
-// Footer
-$footer_to_content_gutter: $gutter_m;
-
-// Navigation
-// $nav_default_color: $tx_color;
-// $nav_active_color: $brand;
-
-// Form
-$form_gutter: $gutter_s;
-// $form_field_tx: $tx_color_h;
-// $form_field_bg: $bg_color_h;
-// $form_response_positive: $positive;
-// $form_response_negative: $negative;
-// $form_field_border_radius: $border_radius_s;
-// $form_field_shadow: $shadow;
-// $form_field_focus_glow: $focus_glow;
-
+$header_z: $z_header;
+// Shadows: you should only override one of the shadow variables
+// $header_shadow_color: $basic_shadow_color;
+$header_shadow: $basic_shadow;
+// Colors
+$header_tx: (
+  dark: map_get($tx_color_3b, dark),
+  light: map_get($tx_color_3h, light)
+);
+$header_bg: (
+  dark: map_get($bg_color_3b, dark),
+  light: map_get($bg_color_3h, light)
+);
 
 /*
- * Import app's components
+ * Footer
  */
+$footer_to_content_gutter: $gutter_m;
+
+/*
+ * Navigation
+ */
+$nav_default_color: $header_tx;
+$nav_active_color: $brand;
+
+/* ===========================================
+ * Import app's components
+ * =========================================== */
 @import "./app";

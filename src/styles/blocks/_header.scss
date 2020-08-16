@@ -1,7 +1,21 @@
-$header_tx: (dark: #ddd, light: #333) !default;
-$header_bg: (dark: #111, light: #ccc) !default;
-$header_z: 10 !default;
 $header_to_content_gutter: (mobile: 20px, tablet: 30px, desktop: 40px) !default;
+$header_z: 10 !default;
+$header_tx: (
+  dark: darken(#ccc, 20%),
+  light: lighten(#333, 20%)
+) !default;
+$header_bg: (
+  dark: darken(#222, 20%),
+  light: lighten(#ddd, 20%)
+) !default;
+$header_shadow_color: (
+  dark: rgba(#000, 0.5),
+  light: rgba(#000, 0.25)
+) !default;
+$header_shadow: (
+  dark: 0 1px 4px map_get($header_shadow_color, dark),
+  light: 0 1px 4px map_get($header_shadow_color, light)
+) !default;
 
 .header {
   position: sticky;
@@ -10,10 +24,14 @@ $header_to_content_gutter: (mobile: 20px, tablet: 30px, desktop: 40px) !default;
   margin-bottom: map_get($header_to_content_gutter, mobile);
   color: map_get($header_tx, dark);
   background-color: map_get($header_bg, dark);
+  box-shadow: map_get($header_shadow, dark);
   @include breakpoint(tablet) { margin-bottom: map_get($header_to_content_gutter, tablet); }
   @include breakpoint(desktop) { margin-bottom: map_get($header_to_content_gutter, desktop); }
+  transition-property: color, background-color;
+  transition-duration: 150ms;
   .light & {
-    color: map_get($header_tx, dark);
-    background-color: map_get($header_bg, dark);
+    color: map_get($header_tx, light);
+    background-color: map_get($header_bg, light);
+    box-shadow: map_get($header_shadow, light);
   }
 }

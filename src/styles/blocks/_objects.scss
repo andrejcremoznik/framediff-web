@@ -10,11 +10,11 @@ $objects_canvas_border_radius: 5px !default;
 
 $objects_picker_bg: (
   dark: lighten(#222, 20%),
-  light: darken(#ddd, 20%)
+  light: lighten(#ddd, 10%)
 ) !default;
 $objects_picker_tx: (
   dark: #ddd,
-  light: #222
+  light: lighten(#333, 10%)
 ) !default;
 $objects_picker_border_color: (
   dark: darken(map_get($objects_picker_bg, dark), 25%),
@@ -35,7 +35,7 @@ $objects_picker_gutter: (mobile: 10px, tablet: 15px, desktop: 20px) !default;
   fill: map_get($objects_canvas_frame_bg, dark);
   stroke-width: 1;
   [data-view-type="stack"] & {
-    fill: none;
+    fill: none !important;
     stroke-opacity: 0.75;
   }
   .light & { fill: map_get($objects_canvas_frame_bg, light); }
@@ -79,7 +79,7 @@ $objects_picker_gutter: (mobile: 10px, tablet: 15px, desktop: 20px) !default;
 .objects-picker__item-legend {
   width: 0.5em;
   height: 100%;
-  transition: width 0.2s ease;
+  transition: width 200ms ease;
   cursor: pointer;
 }
 

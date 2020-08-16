@@ -3,16 +3,16 @@ $form_field_padding: 8px !default;
 $form_field_inner_height: 20px !default;
 $form_field_border_radius: 5px !default;
 $form_field_tx: (
-  dark: lighten(#ddd, 10%),
-  light: darken(#333, 10%)
+  dark: lighten(#ccc, 10%),
+  light: lighten(#333, 10%)
 ) !default;
 $form_field_bg: (
   dark: lighten(#222, 10%),
-  light: darken(#ddd, 10%)
+  light: lighten(#ddd, 10%)
 ) !default;
 $form_autocomplete_highlight: (
-  dark: lighten(map_get($form_field_bg, dark), 10%),
-  light: darken(map_get($form_field_bg, light), 10%)
+  dark: lighten(map_get($form_field_bg, dark), 5%),
+  light: darken(map_get($form_field_bg, light), 5%)
 ) !default;
 $form_field_shadow_color: (
   dark: rgba(#000, 0.5),
@@ -22,9 +22,9 @@ $form_field_shadow: (
   dark: 0 1px 4px map_get($form_field_shadow_color, dark),
   light: 0 1px 4px map_get($form_field_shadow_color, light)
 ) !default;
-$form_field_focus_glow: 0 0 1px 1px #f0f !default;
-$form_response_positive: green !default;
-$form_response_negative: red !default;
+$form_field_focus_glow: 0 0 1px 1px deepskyblue !default;
+$form_response_positive: forestgreen !default;
+$form_response_negative: crimson !default;
 
 .form__row {
   margin-bottom: map_get($form_gutter, mobile);
@@ -64,7 +64,7 @@ $form_response_negative: red !default;
   line-height: inherit;
   font-weight: normal;
   font-style: normal;
-  &:focus { box-shadow: $form_field_focus_glow; }
+  &:focus { box-shadow: $form_field_focus_glow !important; }
   .light & {
     color: map_get($form_field_tx, light);
     background-color: map_get($form_field_bg, light);
@@ -155,10 +155,11 @@ $form_response_negative: red !default;
   overflow-y: auto;
   color: map_get($form_field_tx, dark);
   background-color: map_get($form_field_bg, dark);
-  box-shadow: 0 5px 5px -5px rgba(#000, 0.5);
+  box-shadow: 0 6px 5px -5px map_get($form_field_shadow_color, dark);
   .light & {
     color: map_get($form_field_tx, light);
     background-color: map_get($form_field_bg, light);
+    box-shadow: 0 6px 5px -5px map_get($form_field_shadow_color, light);
   }
 }
 
@@ -167,6 +168,6 @@ $form_response_negative: red !default;
   &:hover,
   &[tabindex="0"] {
     background-color: map_get($form_autocomplete_highlight, dark);
-    .light & { background-color: map_get($form_autocomplete_highlight, dark); }
+    .light & { background-color: map_get($form_autocomplete_highlight, light); }
   }
 }

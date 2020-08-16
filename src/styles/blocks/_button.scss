@@ -1,14 +1,4 @@
 $button_border_radius: 5px !default;
-$button_default_tx: (
-  dark: #fff,
-  light: #000
-) !default;
-$button_default_bg: (
-  dark: lighten(#222, 25%),
-  light: darken(#eee, 25%)
-) !default;
-$button_primary_tx: #fff !default;
-$button_primary_bg: #307bb4 !default;
 $button_shadow_color: (
   dark: rgba(#000, 0.5),
   light: rgba(#000, 0.25)
@@ -17,7 +7,18 @@ $button_shadow: (
   dark: 0 1px 4px map_get($button_shadow_color, dark),
   light: 0 1px 4px map_get($button_shadow_color, light)
 ) !default;
-$button_focus_glow: 0 0 1px 1px #f0f !default;
+$button_focus_glow: 0 0 1px 1px deepskyblue !default;
+// Color variations
+$button_default_tx: (
+  dark: lighten(#ccc, 10%),
+  light: lighten(#333, 10%)
+) !default;
+$button_default_bg: (
+  dark: lighten(#222, 10%),
+  light: lighten(#ddd, 10%)
+) !default;
+$button_primary_tx: white !default;
+$button_primary_bg: deeppink !default;
 
 button.button,
 input.button { -webkit-appearance: button; }
@@ -35,7 +36,7 @@ input.button::-moz-focus-inner {
   border: 0;
   border-radius: $button_border_radius;
   box-shadow: map_get($button_shadow, dark);
-  background-image: linear-gradient(to bottom, rgba(#000, 0), rgba(#000, 0.2));
+  background-image: linear-gradient(to bottom, rgba(#000, 0), rgba(#000, 0.1));
   transition: all 150ms ease;
   font-family: inherit;
   font-size: 1em;
@@ -50,7 +51,7 @@ input.button::-moz-focus-inner {
   cursor: pointer;
   &:focus {
     outline: 0;
-    box-shadow: $button_focus_glow;
+    box-shadow: $button_focus_glow !important;
   }
   .light & { box-shadow: map_get($button_shadow, light); }
 }
@@ -78,7 +79,6 @@ input.button--block { width: 100%; }
 
 // Colors
 .button--default,
-.button--default:visited,
 .button--default:hover,
 .button--default[data-state="active"] { color: map_get($button_default_tx, dark); }
 .button--default {
@@ -89,19 +89,17 @@ input.button--block { width: 100%; }
 .button--default[data-state="active"] { background-color: darken(map_get($button_default_bg, dark), 15%); }
 .light {
   .button--default,
-  .button--default:visited,
   .button--default:hover,
   .button--default[data-state="active"] { color: map_get($button_default_tx, light); }
   .button--default {
     background-color: map_get($button_default_bg, light);
-    text-shadow: 0 1px 1px darken(map_get($button_default_bg, light), 25%);
+    text-shadow: 0 1px 1px lighten(map_get($button_default_bg, light), 25%);
   }
   .button--default:hover { background-color: darken(map_get($button_default_bg, light), 10%); }
   .button--default[data-state="active"] { background-color: darken(map_get($button_default_bg, light), 15%); }
 }
 
 .button--primary,
-.button--primary:visited,
 .button--primary:hover,
 .button--primary[data-state="active"] { color: $button_primary_tx; }
 .button--primary {
@@ -115,20 +113,14 @@ input.button--block { width: 100%; }
 .button--plain {
   padding: 0;
   border-radius: 0;
-  box-shadow: none;
+  box-shadow: none !important;
   line-height: inherit;
   font-weight: inherit;
   text-shadow: none;
   color: inherit;
-  background-color: transparent;
+  background-color: transparent !important;
   background-image: none;
   -webkit-appearance: none;
-  &:hover { background-color: transparent !important; }
-  &.button--primary {
-    color: $button_primary_bg;
-    background-color: transparent;
-    &:hover { color: darken($button_primary_bg, 10%); }
-  }
 }
 
 .button--symbol {
@@ -138,12 +130,13 @@ input.button--block { width: 100%; }
   height: 2.5em; // 0.75em top and bot + 1em line
   padding-top: 0;
   padding-bottom: 0;
-  > svg {
-    height: 1.5em;
+  > svg { height: 1.5em; }
+  &.button--default > svg {
     filter: drop-shadow(0 1px 1px darken(map_get($button_default_bg, dark), 25%));
+    .light & { filter: drop-shadow(0 1px 1px lighten(map_get($button_default_bg, light), 25%)); }
   }
   &.button--primary > svg { filter: drop-shadow(0 1px 1px darken($button_primary_bg, 25%)); }
-  &.button--plain > svg { filter: none; }
+  &.button--plain > svg { filter: none !important; }
 }
 
 .button-group {
@@ -155,8 +148,8 @@ input.button--block { width: 100%; }
   > .button {
     flex: 1 1 auto;
     border-radius: 0;
-    box-shadow: none;
-    border-left: 1px solid rgba(#000, 0.25);
+    box-shadow: none !important;
+    border-left: 1px solid rgba(#000, 0.2);
     &:first-child { border-left: 0; }
   }
 }

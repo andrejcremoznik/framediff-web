@@ -9,6 +9,7 @@ import { Button } from '../../components/button/Button'
 export default function ObjectsSessionStore () {
   const { localObjects } = useContext(StateContext)
   const dispatch = useContext(DispatchContext)
+  const [loading, setLoading] = useState(false)
   const [passphrase, setPassphrase] = useState('')
   const [response, setResponse] = useState(['', 'default'])
 
@@ -28,6 +29,7 @@ export default function ObjectsSessionStore () {
 
   async function loadSession () {
     if (!isValid()) return
+    setLoading(true)
     try {
       const session = await sessionsService.find({ query: { secret: passphrase } })
       if (session.data.length) {
@@ -41,11 +43,14 @@ export default function ObjectsSessionStore () {
       }
     } catch (err) {
       setResponse([err.message, 'error'])
+    } finally {
+      setLoading(false)
     }
   }
 
   async function saveSession () {
     if (!isValid()) return
+    setLoading(true)
     try {
       await sessionsService.create({
         secret: passphrase,
@@ -54,11 +59,14 @@ export default function ObjectsSessionStore () {
       setResponse(['Session saved.', 'success'])
     } catch (err) {
       setResponse([err.message, 'error'])
+    } finally {
+      setLoading(false)
     }
   }
 
   function saveGlobalObjects () {
     if (!isValid()) return
+    setLoading(true)
     Promise
       .allSettled(localObjects.map(object => objectsService.create({
         secret: passphrase,
@@ -80,6 +88,7 @@ export default function ObjectsSessionStore () {
         const responseHtml = <ul>{responses.map(([msg, type], idx) => <li key={idx} className={`c--${type}`}>{msg}</li>)}</ul>
         setResponse([responseHtml, 'default'])
       })
+      .finally(() => setLoading(false))
   }
 
   return (
@@ -96,13 +105,13 @@ export default function ObjectsSessionStore () {
       </Form.Row>
       <Form.Row className='columns columns--gaps'>
         <div className='column'>
-          <Button mods={['block', 'primary']} onClick={loadSession}>Load session</Button>
+          <Button mods={['block', 'primary']} onClick={loadSession} disabled={loading}>Load session</Button>
         </div>
         <div className='column'>
-          <Button mods={['block', 'primary']} onClick={saveSession} disabled={localObjects.length < 1}>Save session</Button>
+          <Button mods={['block', 'primary']} onClick={saveSession} disabled={loading || localObjects.length < 1}>Save session</Button>
         </div>
         <div className='column'>
-          <Button mods={['block', 'default']} onClick={saveGlobalObjects} disabled={localObjects.length < 1}>Save objects globally</Button>
+          <Button mods={['block', 'default']} onClick={saveGlobalObjects} disabled={loading || localObjects.length < 1}>Save objects globally</Button>
         </div>
       </Form.Row>
       {response[0] && <Form.Response type={response[1]}>{response[0]}</Form.Response>}

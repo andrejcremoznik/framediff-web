@@ -1,4 +1,5 @@
 import React, { useContext, useMemo, useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { StateContext } from '../../app/context'
 import { comparing as comparingStorage } from '../../app/storage'
 import { randomColor } from '../../etc/utils'
@@ -108,6 +109,7 @@ export default function ObjectsComparison () {
             onSelect={addObjectForComparison}
             label='Select objects for comparison'
             placeholder='Object name…'
+            hint={<>You can add custom objects via <Link to='/objects'>objects manager</Link>.</>}
           />
         ) : (
           <InternalLinkButton to='/objects'>Add some objects</InternalLinkButton>
