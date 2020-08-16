@@ -7,8 +7,8 @@
     "email": "andrej@cremoznik.si"
   },
   "dependencies": {
-    "@feathersjs/client": "^4.5.7",
-    "@testing-library/jest-dom": "^5.11.2",
+    "@feathersjs/client": "^4.5.8",
+    "@testing-library/jest-dom": "^5.11.3",
     "@testing-library/react": "^10.4.8",
     "@testing-library/user-event": "^12.1.1",
     "immer": "^7.0.7",
@@ -16,7 +16,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^3.4.3",
     "socket.io-client": "^2.3.0",
     "use-immer": "^0.4.1"
   },
