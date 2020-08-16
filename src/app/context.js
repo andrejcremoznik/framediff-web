@@ -4,7 +4,6 @@ export const StateContext = createContext()
 export const DispatchContext = createContext()
 
 export const initialState = {
-  isReady: false,
   theme: 'dark',
   localObjects: [],
   globalObjects: []
@@ -12,9 +11,6 @@ export const initialState = {
 
 export function reducer (draft, { type, payload }) {
   switch (type) {
-    case 'setReady':
-      draft.isReady = true
-      break
     case 'setTheme':
       draft.theme = payload
       break

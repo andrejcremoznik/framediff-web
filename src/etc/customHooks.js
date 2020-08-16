@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react'
+import { GLOBAL_TITLE } from './constants'
 
 export function useEventListener (eventType, handler, options = false, element = window) {
   const internalHandler = useRef()
@@ -15,4 +16,16 @@ export function useEventListener (eventType, handler, options = false, element =
   }, [eventType, options, element])
 }
 
-export default { useEventListener }
+export function useDocumentTitle (title) {
+  useEffect(() => {
+    document.title = `${title} – ${GLOBAL_TITLE}`
+    return () => {
+      document.title = GLOBAL_TITLE
+    }
+  }, [title])
+}
+
+export default {
+  useEventListener,
+  useDocumentTitle
+}

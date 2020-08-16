@@ -1,9 +1,12 @@
 import React from 'react'
+import { useDocumentTitle } from '../../etc/customHooks'
 import ObjectsEditor from '../../features/objects/ObjectsEditor'
 import ObjectsSessionStore from '../../features/objects/ObjectsSessionStore'
 import ObjectsList from '../../features/objects/ObjectsList'
 
 export default function Objects () {
+  useDocumentTitle('Manage objects')
+
   return (
     <>
       <h1>Manage objects</h1>

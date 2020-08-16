@@ -189,6 +189,20 @@ $footer_to_content_gutter: $gutter_m;
 $nav_default_color: $header_tx;
 $nav_active_color: $brand;
 
+/*
+ * Objects
+ */
+$objects_canvas_border_radius: $border_radius_s;
+$objects_canvas_bg: (
+  dark: map_get($bg_color_1b, dark),
+  light: map_get($bg_color_1h, light)
+);
+
+$objects_picker_gutter: $gutter_s;
+$objects_picker_border_radius: $border_radius_s;
+$objects_picker_bg: $bg_color_2h;
+$objects_picker_tx: $tx_color_2h;
+
 /* ===========================================
  * Import app's components
  * =========================================== */

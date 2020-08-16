@@ -115,15 +115,17 @@ export default function ObjectsComparison () {
           <InternalLinkButton to='/objects'>Add some objects</InternalLinkButton>
         )}
       </div>
-      <div className='objects-picker__items gutter-bottom--s'>
-        {!!objectsBeingCompared.length && objectsBeingCompared.map(([w, h, t, id, c]) => (
-          <div key={id} className='objects-picker__item'>
-            <div className='objects-picker__item-legend' style={{ backgroundColor: c }} onClick={randomizeColor(id)} title='Change color' />
-            <div className='objects-picker__item-title'>{t} <small className='objects-picker__item-size f--xs'>{w} × {h}</small></div>
-            <Button className='objects-picker__item-x' mods={['symbol', 'plain']} onClick={removeObjectFromComparison(id)} aria-label='Remove object'><IconTimes /></Button>
-          </div>
-        ))}
-      </div>
+      {!!objectsBeingCompared.length && (
+        <div className='objects-picker__items gutter-bottom--s'>
+          {objectsBeingCompared.map(([w, h, t, id, c]) => (
+            <div key={id} className='objects-picker__item'>
+              <div className='objects-picker__item-legend' style={{ backgroundColor: c }} onClick={randomizeColor(id)} title='Change color' />
+              <div className='objects-picker__item-title'>{t} <small className='objects-picker__item-size f--xs'>{w} × {h}</small></div>
+              <Button className='objects-picker__item-x' mods={['symbol', 'plain']} onClick={removeObjectFromComparison(id)} aria-label='Remove object'><IconTimes /></Button>
+            </div>
+          ))}
+        </div>
+      )}
       <div className='objects-canvas__controls columns columns--apart gutter-bottom--s'>
         <ButtonGroup className='column'>
           <Button mods={['symbol', 'default']} onClick={changeView('sidebyside')} aria-label='Show side by side' data-state={view === 'sidebyside' && 'active'}><IconGrid /></Button>

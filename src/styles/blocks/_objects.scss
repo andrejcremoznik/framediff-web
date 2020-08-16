@@ -1,3 +1,4 @@
+$objects_canvas_border_radius: 5px !default;
 $objects_canvas_bg: (
   dark: darken(#222, 5%),
   light: lighten(#ddd, 5%)
@@ -6,14 +7,13 @@ $objects_canvas_frame_bg: (
   dark: darken(map_get($objects_canvas_bg, dark), 2%),
   light: lighten(map_get($objects_canvas_bg, light), 2%)
 ) !default;
-$objects_canvas_border_radius: 5px !default;
 
 $objects_picker_bg: (
-  dark: lighten(#222, 20%),
+  dark: lighten(#222, 10%),
   light: lighten(#ddd, 10%)
 ) !default;
 $objects_picker_tx: (
-  dark: #ddd,
+  dark: lighten(#ddd, 10%),
   light: lighten(#333, 10%)
 ) !default;
 $objects_picker_border_color: (
@@ -22,7 +22,6 @@ $objects_picker_border_color: (
 ) !default;
 $objects_picker_border_radius: 5px !default;
 $objects_picker_gutter: (mobile: 10px, tablet: 15px, desktop: 20px) !default;
-
 
 // Canvas
 .objects-canvas__panel {

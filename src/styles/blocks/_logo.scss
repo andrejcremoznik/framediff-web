@@ -7,3 +7,26 @@ $logo_size: 2rem !default;
   width: $logo_size;
   height: $logo_size;
 }
+
+.logo-splash { position: relative; }
+.logo-splash__image {
+  display: block;
+  opacity: 0.05;
+  @media (orientation: landscape) {
+    width: 25vh;
+    height: 25vh;
+  }
+  @media (orientation: portrait) {
+    width: 25vw;
+    height: 25vw;
+  }
+}
+.logo-splash__text {
+  position: absolute;
+  top: 0; left: 0;
+  display: flex;
+  width: 100%; height: 100%;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}

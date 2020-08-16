@@ -1,3 +1,5 @@
+export const GLOBAL_TITLE = 'FrameDiff'
+
 export const KEYCODE = {
   ENTER: 13,
   ESCAPE: 27,
@@ -5,4 +7,7 @@ export const KEYCODE = {
   DOWN: 40
 }
 
-export default { KEYCODE }
+export default {
+  GLOBAL_TITLE,
+  KEYCODE
+}

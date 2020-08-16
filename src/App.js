@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useImmerReducer } from 'use-immer'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { objectsService } from './app/feathers'
@@ -10,8 +10,11 @@ import Objects from './pages/objects/Objects'
 import NotFound from './pages/notfound/NotFound'
 import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
+import Splash from './components/splash/Splash'
+import { ReactComponent as Logo } from './assets/layers-alt.svg'
 
 export default function App () {
+  const [isReady, setIsReady] = useState(false)
   const [state, dispatch] = useImmerReducer(reducer, initialState)
 
   useEffect(() => {
@@ -37,23 +40,23 @@ export default function App () {
         console.error(`API error: ${err.message}`)
       }
       // Ready
-      dispatch({ type: 'setReady' })
+      setIsReady(true)
     }
     bootstrap()
   }, [dispatch])
 
   useEffect(() => {
-    if (state.isReady) {
+    if (isReady) {
       document.body.classList.remove('dark', 'light')
       document.body.classList.add(state.theme)
       themeStorage.set(state.theme)
     }
-  }, [state.theme, state.isReady])
+  }, [state.theme, isReady])
 
   return (
     <DispatchContext.Provider value={dispatch}>
       <StateContext.Provider value={state}>
-        {state.isReady && (
+        {isReady ? (
           <Router>
             <Header className='container' />
             <main className='main container'>
@@ -65,6 +68,13 @@ export default function App () {
             </main>
             <Footer className='container f--s t--center' />
           </Router>
+        ) : (
+          <Splash>
+            <div className='logo-splash'>
+              <Logo className='logo-splash__image' />
+              <div className='logo-splash__text'>Loading…</div>
+            </div>
+          </Splash>
         )}
       </StateContext.Provider>
     </DispatchContext.Provider>

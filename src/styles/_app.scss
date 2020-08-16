@@ -5,10 +5,11 @@
 @import './general/base';
 @import './general/typography';
 
-// Blocks
+// Common blocks
 @import './blocks/button';
 @import './blocks/columns';
 @import './blocks/form';
+@import './blocks/splash';
 
 // Specific blocks
 @import './blocks/footer';
