@@ -8,6 +8,8 @@ This is a demo React app that's slightly usable if you'd like to compare the siz
 
 Basically, I'm looking for a new phone and I want something smaller than what I have and this allows me to visuallize the difference in size.
 
+![Screenshot](https://cremoznik.si/files/framediff.png)
+
 ## How to use
 
 1. Clone the repo
