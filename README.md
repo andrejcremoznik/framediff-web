@@ -1,68 +1,55 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# FrameDiff - Web
 
-## Available Scripts
+For the backend part see [FrameDiff - API](https://github.com/andrejcremoznik/framediff-api).
 
-In the project directory, you can run:
+**Description**
 
-### `npm start`
+This is a demo React app that's slightly usable if you'd like to compare the size of some objects side-by-side or stacked by entering their physical dimensions.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Basically, I'm looking for a new phone and I want something smaller than what I have and this allows me to visuallize the difference in size.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## How to use
 
-### `npm test`
+1. Clone the repo
+2. Install dependencies `npm install`
+2. Run `npm start` which will open the app in browser at http://localhost:3000/
+3. If you didn't start the API, it will take a few seconds for backend calls to timeout after which you an use the app just fine.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Then add some objects in the Objects manager, go back to Compare and use the input field to find and add them to comparison.
 
-### `npm run build`
+### Saving global objects to backend
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+You need to have the backend running.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+**Passphrase:** in the development environment, the passphrase to save global objects is `passphrase`. In a production environment this will be read from the `FRAMEDIFF_SECRETS` environment variable.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Showcase
 
-### `npm run eject`
+**Code structure**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+./src/
+ - /app        Contains state context, API library/models, Storage models
+ - /assets     Images and stuff that's imported in JS files
+ - /components The smallest building blocks (React components) like buttons...
+ - /etc        Tiny functions / helpers that don't belong elsewhere
+ - /features   The smallest single responsibility components (e.g. a complete form)
+ - /pages      Root components for specific routes
+ - /styles     CSS *
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**About CSS**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Keeping CSS out of components and structuring it in a more traditional way makes it much easier to extend, maintain and refactor. If you bundle it with JS you get some immediate benefits like automatic scoping, but in return you lose the entire cascade. If you know how CSS works and are able to use the cascade to your advantage, loading CSS into JS only leads to PITA down the road.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**Using Context and ImmerJS for global state**
 
-## Learn More
+* `app/context.js` contains the global state and reducer function.
+* `App.js` showcases how to bootstrap the app with Immer and provide it the global context.
+* `features/objects/*.js showcases how to `useContext` to read the global state and dispatch state changes.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**FeathersJS client library**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+[FeathersJS](https://feathersjs.com/) is really cool. They provide a client library that allows you to consume the API the same you'd do it on the backend. It also transparently handles REST and real-time communication via sockets.
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+`/app/feathers.js` imports the feathers client, configures it and exports API services (endpoints) to consume in the app.
