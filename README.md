@@ -48,7 +48,7 @@ Keeping CSS out of components and structuring it in a more traditional way makes
 
 * `app/context.js` contains the global state and reducer function.
 * `App.js` showcases how to bootstrap the app with Immer and provide it the global context.
-* `features/objects/*.js showcases how to `useContext` to read the global state and dispatch state changes.
+* `features/objects/*.js` showcases how to `useContext` to read the global state and dispatch state changes.
 
 **FeathersJS client library**
 
